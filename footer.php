@@ -1,15 +1,23 @@
         <footer>
             <div class="container">
                 <div class="col-sm-4 col-sm-push-8">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/logo-blanco.png" class="img-responsive logo-blanco">
+                    <?php if( get_field( "logo_pie_de_pagina", 'option') ):
+
+						$image = get_field('logo_pie_de_pagina', 'option');
+					 ?>
+
+						<img src="<?php echo $image['url']; ?>" class="img-responsive logo-blanco">
+					<?php endif; ?>
                 </div>
                 <div class="col-sm-8 col-sm-pull-4">
                     <div class="address">
-                        Ministerio de Trabajo y Promoción del Empleo<br />
-                        Mesa de Partes: Av. Salaverry 655 - Jesús María - Central Telefónica: 630-6000 / 630-6030<br />
-                        Horarios de Atención de la línea de Consultorios Laborales 0800-1-6872: 7:00 am a 4:30 pm en horario corrido<br />
-                        Horarios de Atención para los Trabajadores del Hogar: Días domingo de 8:00 am a 5:00 pm - Calendario de Atención<br />
-                        Horarios de Atención - Contáctenos a informes@trabajo.gob.pe
+                        <?php if( get_field( "texto_pie_de_pagina", 'option') ):
+
+							$text = get_field('texto_pie_de_pagina', 'option');
+						 ?>
+
+							<?php echo $text; ?>
+						<?php endif; ?>
                     </div>
                 </div>
             </div>

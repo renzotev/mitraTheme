@@ -250,6 +250,9 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   height: 30px;
   max-width: 260px;
   line-height: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .carousel-wrapper {
   padding: 30px 0;
@@ -738,10 +741,22 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   float: left;
   margin: 0 4px;
 }
+.general-content .pagination-posts ul li.prev a,
+.general-content .pagination-posts ul li.next a {
+  background-color: transparent;
+  color: #333;
+  font-size: 40px;
+  line-height: 15px;
+}
+.general-content .pagination-posts ul li.prev a:hover,
+.general-content .pagination-posts ul li.next a:hover {
+  color: #f00;
+  background-color: transparent;
+}
 .general-content .pagination-posts ul li a {
   text-decoration: none;
   display: block;
-  background-color: #f00;
+  background-color: #333;
   color: #fff;
   text-align: center;
   width: 22px;
@@ -750,21 +765,9 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.general-content .pagination-posts ul li a.prev,
-.general-content .pagination-posts ul li a.next {
-  background-color: transparent;
-  color: #f00;
-  font-size: 40px;
-  line-height: 15px;
-}
-.general-content .pagination-posts ul li a.prev:hover,
-.general-content .pagination-posts ul li a.next:hover {
-  color: #333;
-  background-color: transparent;
-}
 .general-content .pagination-posts ul li a.active,
 .general-content .pagination-posts ul li a:hover {
-  background-color: #333;
+  background-color: #f00;
 }
 .general-content .pdf-link-icon {
   background: url("img/ico-pdf-table.png") no-repeat 0 0;
@@ -794,6 +797,9 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
 }
 .general-content .post-page .main-image .img-responsive {
   width: 100%;
+}
+.general-content .post-page .share-icons {
+  margin: 10px 0 5px 0;
 }
 .general-content .post-page .share-post {
   list-style: none;
@@ -1109,13 +1115,13 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
 }
 .slider .slide .caption {
   position: absolute;
-  background: url("img/slider-caption.png") no-repeat 0 50%;
+  background: url("img/slider-caption.png") no-repeat 0 0;
   height: 100%;
-  width: 460px;
+  width: 467px;
 }
 .slider .slide .caption .content-caption {
   color: #fff;
-  padding: 30px 130px 30px 30px;
+  padding: 30px 140px 30px 30px;
 }
 .slider .slide .caption .content-caption p {
   font-weight: bold;
@@ -1136,6 +1142,13 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   text-decoration: none;
   font-size: 12px;
   padding: 5px 20px;
+}
+.slider .slide .image-slider {
+  width: 100%;
+  padding-bottom: 35.088%;
+  background-size: 860px;
+  background-repeat: no-repeat;
+  background-position: right 0;
 }
 .sponsors {
   text-align: center;

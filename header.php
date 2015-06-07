@@ -63,21 +63,48 @@
             <div class="logos-media">
                 <div class="container">
                     <div class="col-sm-4 hidden">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/logo-ministerio.png" class="img-responsive" />
+						<?php if( get_field( "logo_secundario", 'option') ):
+
+							$image = get_field('logo_secundario', 'option');
+						 ?>
+
+							<img src="<?php echo $image['url']; ?>" class="img-responsive" />
+						<?php endif; ?>
                     </div>
 
                     <div class="col-sm-4">
-                        <a href="#" class="logo-wrapper"><img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" class="img-responsive" /></a>
+                        
+                        <?php if( get_field( "logo_principal", 'option' ) ):
+
+							$image = get_field('logo_principal', 'option');
+						 ?>
+
+							<a href="<?php echo site_url(); ?>" class="logo-wrapper"><img src="<?php echo $image['url']; ?>" class="img-responsive" /></a>
+						<?php endif; ?>
                     </div>
 
                     <div class="col-sm-4 hidden">
-                        <ul class="social-media pull-right">
-                            <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/fb-icon.png" /></a></li>
-                            <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/tw-icon.png" /></a></li>
-                            <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/yt-icon.png" /></a></li>
-                            <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/fk-icon.png" /></a></li>
-                            <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/sc-icon.png" /></a></li>
-                        </ul>
+
+                        <?php if( have_rows('redes_sociales', 'option') ): ?>
+							<ul class="social-media pull-right">
+							<?php while( have_rows('redes_sociales', 'option') ): the_row(); 
+								
+								$image = get_sub_field('imagen');
+								$link = get_sub_field('url');
+
+								?>
+
+								<li>
+									<a href="<?php echo $link; ?>" target="_blank">
+										<img src="<?php echo $image['url']; ?>" />
+									</a>
+								</li>
+
+							<?php endwhile; ?>
+
+							</ul>
+
+						<?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -92,119 +119,71 @@
                         </button>
                     </div>
 
-                    <div id="navbar" class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="index.php">Inicio</a></li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">El Ministerio <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="ministerio.php">El Ministerio</a></li>
-                                    <li><a href="alta-direccion.php">Alta Dirección</a></li>
-                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sector Empleo</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Viceministerio Prom.Emp.Cap.Lab.</a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Información General</a>
-                                                        <ul class="dropdown-menu">
-                                                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Información General</a>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a href="#">¿Que es la Red OSEL?</a></li>
-                                                                    <li><a href="#">Red Observatorios</a></li>
-                                                                    <li><a href="#">Miembros</a></li>
-                                                                    <li><a href="#">Resultados</a></li>
-                                                                    <li><a href="#">Líneas de Invertención</a></li>
-                                                                    <li><a href="#">Eventos</a></li>
-                                                                    <li><a href="#">Directorio</a></li>
-                                                                    <li><a href="#">Publicaciones</a></li>
-                                                                </ul>
-                                                            </li>
-                                                            <li><a href="#">Informe Estadístico Mensual</a></li>
-                                                            <li><a href="#">Informe Anual del Empleo</a></li>
-                                                            <li><a href="#">Boletín de Economía Laboral</a></li>
-                                                            <li><a href="#">Boletín Estadísticas Ocupacional</a></li>
-                                                            <li><a href="#">OSEL</a></li>
-                                                            <li><a href="#">Trípticos Laborales</a></li>
-                                                            <li><a href="#">Estadísticas de Empleo</a></li>
-                                                            <li><a href="#">Publicaciones Especiales</a></li>
-                                                            <li><a href="#">Mujer en el Mercado Laboral</a></li>
-                                                            <li><a href="#">Difusión</a></li>
-                                                            <li><a href="#">Microdatos</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">DISEL</a></li>
-                                                    <li><a href="#">REMYPE</a></li>
-                                                    <li><a href="#">RENECOSUCC</a></li>
-                                                    <li><a href="#">REPPCD</a></li>
-                                                    <li><a href="#">RENEEIL</a></li>
-                                                    <li><a href="#">D.P.L.P. con Discapacitad</a></li>
-                                                    <li><a href="#">Informes</a></li>
-                                                    <li><a href="#">Preguntas Frecuentes</a></li>
-                                                </ul>
-                                            </li>    
-                                            <li><a href="#">Dir. Gen. Promoción del Empleo</a><li>
-                                            <li><a href="#">Dir. Gen. Serv. Nac. Emp.</a><li>
-                                            <li><a href="#">Dir. Gen. Form. Cap. Lab.</a><li>
-                                            <li><a href="#">Programa Jóvenes a la Obra</a><li>
-                                            <li><a href="#">Programa Perú Responsable</a><li>
-                                            <li><a href="#">Programa Trabaja Perú</a><li>
-                                            <li><a href="#">Programa Vamos Perú</a><li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Sector Trabajo</a></li>
-                                    <li><a href="#">Consejo Nacional Trab.Prom.Emp.</a></li>
-                                    <li><a href="#">Consejo Nacional de Salud Seg.Trab.</a></li>
-                                    <li><a href="#">Direcciones Regionales</a></li>
-                                    <li><a href="#">Comisiones y Comités</a></li>
-                                    <li><a href="#">Programas</a></li>
-                                    <li><a href="#">Galeria de Ministros</a></li>
-                                    <li><a href="#">Condecoración Orden de Trabajo</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="servicios.php">Servicios</a></li>
-                            <li><a href="#">Guía de Trámites</a></li>
-                            <li><a href="#">Estadística</a></li>
-                            <li><a href="#">Prensa</a></li>
-                            <li><a href="#">Contáctenos</a></li>
-                        </ul>
-                    </div>
+                    
+                    <?php 
+                    	wp_nav_menu( array(
+			                'menu'              => 'primary',
+			                'theme_location'    => 'primary',
+			                'container'         => 'div',
+			                'container_class'   => 'collapse navbar-collapse',
+			        		'container_id'      => 'navbar',
+			                'menu_class'        => 'nav navbar-nav',
+			                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+			                'walker'            => new wp_bootstrap_navwalker())
+			            );
+                     ?>
+                       
                 </div>
             </nav>
 
             <div class="clearfix"></div>
         </header>
 
+        <?php 
+		    $args = array(
+		        'post_type'        => 'notas-de-prensa',
+		        'posts_per_page'   => 3
+		    );
+
+		    $the_query = new WP_Query( $args );  
+		?>
+
         <div class="slider hidden">
             <div class="container">
                 <div id="slides" class="slides-wrapper">
-                    <div class="slide">
-                        <div class="caption">
-                            <div class="content-caption">
-                                <p>MINISTERIO DE TRABAJO CAPACITA A MÁS DE 600 PYMES Y  MICROEMPRESAS PARA ELABORAR PLANES DE RESPONSABILIDAD SOCIAL EMPRESARIAL</p>
-                                <p class="ref"><em>Taller se realizó a través del programa “Perú Responsable”</em></p>
-                                <a href="#" class="see-more">Leer más</a>
-                            </div>
-                        </div>
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/slide.jpg" class="img-responsive">
-                    </div>
-                    <div class="slide">
-                        <div class="caption">
-                            <div class="content-caption">
-                                <p>MINISTERIO DE TRABAJO CAPACITA A MÁS DE 600 PYMES Y  MICROEMPRESAS PARA ELABORAR PLANES DE RESPONSABILIDAD SOCIAL EMPRESARIAL</p>
-                                <p class="ref"><em>Taller se realizó a través del programa “Perú Responsable”</em></p>
-                                <a href="#" class="see-more">Leer más</a>
-                            </div>
-                        </div>
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/slide.jpg" class="img-responsive">
-                    </div>
-                    <div class="slide">
-                        <div class="caption">
-                            <div class="content-caption">
-                                <p>MINISTERIO DE TRABAJO CAPACITA A MÁS DE 600 PYMES Y  MICROEMPRESAS PARA ELABORAR PLANES DE RESPONSABILIDAD SOCIAL EMPRESARIAL</p>
-                                <p class="ref"><em>Taller se realizó a través del programa “Perú Responsable”</em></p>
-                                <a href="#" class="see-more">Leer más</a>
-                            </div>
-                        </div>
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/slide.jpg" class="img-responsive">
-                    </div>
+                    <?php if ( $the_query->have_posts() ) : ?>
+		                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+
+			                <div class="slide">
+		                        <div class="caption">
+		                            <div class="content-caption">
+		                                <p><?php the_title(); ?></p>
+		                                <p class="ref">
+		                                	<?php if( get_field( 'subtitulo') ):
+
+												$text = get_field('subtitulo');
+										 	?>
+
+												<em><?php echo $text; ?></em>
+											<?php endif; ?>
+		                                </p>
+		                                <a href="<?php the_permalink(); ?>" class="see-more">Leer más</a>
+		                            </div>
+		                        </div>
+
+		                        <?php
+									if ( has_post_thumbnail() ) {
+										$src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), "notaPrensaBanner");
+									} 
+								?>
+								<div class="image-slider" style="background-image:url(<?php echo $src[0] ?>)"></div>
+		                    </div>
+
+		                <?php endwhile; ?>
+
+				        <?php wp_reset_postdata(); ?>
+
+				    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -215,7 +194,14 @@
                     <img src="<?php echo get_template_directory_uri(); ?>/img/phone-consult.png">
                     <figcaption>
                         <span class="text-top">Consultas Laborales</span>
-                        <span class="number">0800-1-68-72</span>
+                        
+                        <?php if( get_field( "telefono_consultas_laborales", 'option') ):
+
+							$text = get_field('telefono_consultas_laborales', 'option');
+						 ?>
+
+							<span class="number"><?php echo $text; ?></span>
+						<?php endif; ?>
                         <span class="text-bottom">Linea Gratuita</span>
                     </figcaption>
                 </figure>

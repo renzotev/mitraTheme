@@ -302,6 +302,9 @@ header
 					height 30px
 					max-width 260px
 					line-height 14px
+					overflow hidden
+					text-overflow ellipsis
+					white-space nowrap
 
 .carousel-wrapper
 	padding 30px 0
@@ -776,30 +779,31 @@ header
 				float left
 				margin 0 4px
 				
+				&.prev,
+				&.next
+					a
+						background-color transparent
+						color #333
+						font-size 40px
+						line-height 15px
+						
+						&:hover
+							color #FF0000
+							background-color transparent
+				
 				a
 					text-decoration none
 					display block
-					background-color #FF0000
+					background-color #333
 					color white
 					text-align center
 					width 22px
 					height 22px
 					border-radius 5px
 					
-					&.prev,
-					&.next
-						background-color transparent
-						color #FF0000
-						font-size 40px
-						line-height 15px
-						
-						&:hover
-							color #333
-							background-color transparent
-					
 					&.active,
 					&:hover
-						background-color #333
+						background-color #FF0000
 
 	.pdf-link-icon
 		background url("img/ico-pdf-table.png") no-repeat 0 0
@@ -832,6 +836,9 @@ header
 				width 100%
 				
 
+		.share-icons
+			margin 10px 0 5px 0
+			
 		.share-post
 			list-style none
 			margin 10px 0 15px 0
@@ -1153,13 +1160,13 @@ header
 		
 		.caption
 			position absolute
-			background url("img/slider-caption.png") no-repeat 0 50%
+			background url("img/slider-caption.png") no-repeat 0 0
 			height 100%
-			width 460px
+			width 467px
 			
 			.content-caption
 				color white
-				padding 30px 130px 30px 30px
+				padding 30px 140px 30px 30px
 				
 				p
 					font-weight bold
@@ -1174,6 +1181,13 @@ header
 					text-decoration none
 					font-size 12px
 					padding 5px 20px
+		
+		.image-slider
+			width 100%
+			padding-bottom 35.088%
+			background-size 860px
+			background-repeat no-repeat
+			background-position right 0
 
 .sponsors
 	text-align center
