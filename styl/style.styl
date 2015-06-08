@@ -1160,7 +1160,7 @@ header
 		
 		.caption
 			position absolute
-			background url("img/slider-caption.png") no-repeat 0 0
+			background url("img/slider-caption.png") no-repeat 0 50%
 			height 100%
 			width 467px
 			
@@ -1193,8 +1193,22 @@ header
 	text-align center
 	padding 40px 0
 	
-	.img-responsive
-		display inline-block
+	.enlace
+		padding-left 7px
+		padding-right 7px
+		margin-bottom 14px
+		
+		a
+			display block
+			position relative
+			padding-bottom 30%
+			
+			.img-responsive
+				height 100%
+				position absolute
+				top 0
+				left 0
+			
 
 .tabs-section
 	margin-bottom 30px
@@ -1323,53 +1337,31 @@ header
 		position relative
 		color white
 		
-		&:after
-			content ""
+		.after
 			position absolute
-			background-position 0 0
+			background-position 100% 0
 			background-repeat no-repeat
+			width 47px
+			height 42px
 		
 		&.b-left
 			background-position 100% 0
 			margin-right -21px
 			padding 16px 70px 0 11px
+			
+			.after
+				right 38px
+				top 17px
 		
 		&.b-right
 			background-position 0 100%
 			margin-left -21px
 			padding 16px 76px 0 36px
+			
+			.after
+				right 15px
+				top 14px
 		
-		&.ico-1
-			&:after
-				background-image url("img/ico-1.png")
-				width 34px
-				height 32px
-				right 30px
-				top 22px
-				
-		&.ico-2
-			&:after
-				background-image url("img/ico-2.png")
-				width 42px
-				height 42px
-				top 13px
-				right 30px
-		
-		&.ico-3
-			&:after
-				background-image url("img/ico-3.png")
-				width 33px
-				height 37px
-				top 18px
-				right 32px
-		
-		&.ico-4
-			&:after
-				background-image url("img/ico-4.png")
-				width 47px
-				height 39px
-				top 15px
-				right 19px
 
 .videos-wrapper
 	margin-top 30px

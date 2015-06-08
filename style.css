@@ -1115,7 +1115,7 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
 }
 .slider .slide .caption {
   position: absolute;
-  background: url("img/slider-caption.png") no-repeat 0 0;
+  background: url("img/slider-caption.png") no-repeat 0 50%;
   height: 100%;
   width: 467px;
 }
@@ -1154,8 +1154,21 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   text-align: center;
   padding: 40px 0;
 }
-.sponsors .img-responsive {
-  display: inline-block;
+.sponsors .enlace {
+  padding-left: 7px;
+  padding-right: 7px;
+  margin-bottom: 14px;
+}
+.sponsors .enlace a {
+  display: block;
+  position: relative;
+  padding-bottom: 30%;
+}
+.sponsors .enlace a .img-responsive {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .tabs-section {
   margin-bottom: 30px;
@@ -1283,49 +1296,30 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   position: relative;
   color: #fff;
 }
-.triangle-buttons .bt-bg:after {
-  content: "";
+.triangle-buttons .bt-bg .after {
   position: absolute;
-  background-position: 0 0;
+  background-position: 100% 0;
   background-repeat: no-repeat;
+  width: 47px;
+  height: 42px;
 }
 .triangle-buttons .bt-bg.b-left {
   background-position: 100% 0;
   margin-right: -21px;
   padding: 16px 70px 0 11px;
 }
+.triangle-buttons .bt-bg.b-left .after {
+  right: 38px;
+  top: 17px;
+}
 .triangle-buttons .bt-bg.b-right {
   background-position: 0 100%;
   margin-left: -21px;
   padding: 16px 76px 0 36px;
 }
-.triangle-buttons .bt-bg.ico-1:after {
-  background-image: url("img/ico-1.png");
-  width: 34px;
-  height: 32px;
-  right: 30px;
-  top: 22px;
-}
-.triangle-buttons .bt-bg.ico-2:after {
-  background-image: url("img/ico-2.png");
-  width: 42px;
-  height: 42px;
-  top: 13px;
-  right: 30px;
-}
-.triangle-buttons .bt-bg.ico-3:after {
-  background-image: url("img/ico-3.png");
-  width: 33px;
-  height: 37px;
-  top: 18px;
-  right: 32px;
-}
-.triangle-buttons .bt-bg.ico-4:after {
-  background-image: url("img/ico-4.png");
-  width: 47px;
-  height: 39px;
-  top: 15px;
-  right: 19px;
+.triangle-buttons .bt-bg.b-right .after {
+  right: 15px;
+  top: 14px;
 }
 .videos-wrapper {
   margin-top: 30px;
@@ -1477,15 +1471,6 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   .triangle-buttons .bt-bg.b-right {
     padding: 16px 40px 0 30px;
   }
-  .triangle-buttons .bt-bg.ico-2:after {
-    right: 15px;
-  }
-  .triangle-buttons .bt-bg.ico-3:after {
-    right: 22px;
-  }
-  .triangle-buttons .bt-bg.ico-4:after {
-    right: 7px;
-  }
 }
 @media (min-width: 992px) {
   header .line-top .items-top li {
@@ -1534,15 +1519,6 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   }
   .triangle-buttons .bt-bg.b-right {
     padding: 16px 70px 0 45px;
-  }
-  .triangle-buttons .bt-bg.ico-2:after {
-    right: 30px;
-  }
-  .triangle-buttons .bt-bg.ico-3:after {
-    right: 32px;
-  }
-  .triangle-buttons .bt-bg.ico-4:after {
-    right: 19px;
   }
   .videos-wrapper .fb-page {
     float: right;

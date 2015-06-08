@@ -8,52 +8,56 @@ get_header();
 
 ?>
 
+<?php if( have_rows('botones_con_icono') ): ?>
+    <div class="triangle-buttons">
+        <div class="container">
+            <?php $flag = false; $LRclass = ''; ?>
+            <?php while( have_rows('botones_con_icono') ): the_row(); 
+                
+                $imagen = get_sub_field('icono');
+                $url = get_sub_field('url');
+                $text = get_sub_field('texto');
+                $flag = !$flag;
+                $LRclass = ($flag) ? "b-left" : "b-right";
+            ?>
 
-<div class="triangle-buttons">
-    <div class="container">
-        <a href="#" class="col-xs-6 col-sm-3">
-            <div class="bt-bg b-left ico-1">
-                Gestión de la Calidad en el MTPE
-            </div>
-        </a>
-        <a href="#" class="col-xs-6 col-sm-3">
-            <div class="bt-bg b-right ico-2">
-                Libro de Reclamaciones
-            </div>
-        </a>
-        <a href="#" class="col-xs-6 col-sm-3">
-            <div class="bt-bg b-left ico-3">
-                Encuestas de Demanda Ocupacional
-            </div>
-        </a>
-        <a href="#" class="col-xs-6 col-sm-3">
-            <div class="bt-bg b-right ico-4">
-                Registro de Construcción Civil
-            </div>
-        </a>
-    </div>
-</div>
+                <a href="<?php echo $url; ?>" class="col-xs-6 col-sm-3" target="_blank">
+                    <div class="bt-bg <?php echo $LRclass; ?>">
+                        <div class="after" style="background-image:url(<?php echo $imagen['url']; ?>)"></div>
+                        <?php echo $text; ?>
+                    </div>
+                </a>
 
-<div class="image-buttons">
-    <div class="container">
-        <a href="#" class="col-sm-6">
-            <figure>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/img-btn-1.jpg" class="img-responsive hidden">
-                <figcaption>
-                    <span>Centro de Empleo</span>
-                </figcaption>
-            </figure>
-        </a>
-        <a href="#" class="col-sm-6">
-            <figure>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/img-btn-2.jpg" class="img-responsive hidden">
-                <figcaption>
-                    <span>Ventanilla de Servicios Laborales</span>
-                </figcaption>
-            </figure>
-        </a>
+            <?php endwhile; ?>
+        </div>
     </div>
-</div>
+<?php endif; ?>
+
+
+<?php if( have_rows('servicios') ): ?>
+    <div class="image-buttons">
+        <div class="container">
+            <?php while( have_rows('servicios') ): the_row(); 
+                
+                $imagen = get_sub_field('imagen');
+                $url = get_sub_field('url');
+                $text = get_sub_field('texto');
+
+            ?>
+
+                <a href="<?php echo $url; ?>" class="col-sm-6" target="_blank">
+                    <figure>
+                        <img src="<?php echo $imagen['url']; ?>" class="img-responsive hidden">
+                        <figcaption>
+                            <span><?php echo $text; ?></span>
+                        </figcaption>
+                    </figure>
+                </a>
+
+            <?php endwhile; ?>
+        </div>
+    </div>
+<?php endif; ?>
 
 <div class="tabs-section">
     <div class="container">
@@ -211,52 +215,95 @@ get_header();
     </div>
 </div>
 
-<div class="carousel-wrapper hidden">
-    <div class="container">
-        <div class="owl-carousel">
-            <div class="item">
-                <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/item-carousel.jpg" class="img-responsive" /></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/item-carousel.jpg" class="img-responsive" /></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/item-carousel.jpg" class="img-responsive" /></a>
+
+<?php if( have_rows('eventos') ): ?>
+    <div class="carousel-wrapper hidden">
+        <div class="container">
+            <div class="owl-carousel">
+                <?php while( have_rows('eventos') ): the_row(); 
+                    
+                    $image = get_sub_field('imagen');
+                    $url = get_sub_field('url');
+                    $archivo = get_sub_field('archivo');
+                    $url_o_archivo = get_sub_field('url_o_archivo');
+                    $link = ($url_o_archivo == "url") ? $url : $archivo["url"];
+
+                ?>
+
+                    <div class="item">
+                        <a href="<?php echo $link; ?>"><img src="<?php echo $image['url']; ?>" class="img-responsive" /></a>
+                    </div>
+
+                <?php endwhile; ?>
             </div>
         </div>
-    </div>      
-</div>
-
-<?php if( get_field( "url_video_youtube") ):
-
-	$url = get_field('url_video_youtube');
-
-    if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match)) {
-	    $video_id = $match[1];
-	}
-?>
-
-	<div class="videos-wrapper hidden">
-	    <div class="container">
-	        <div class="col-sm-8">
-	            <div class="header-video">Videos</div>
-	            <div class="clearfix"></div>
-	            <div class="video-container">
-					<iframe width="560" height="315" src="//www.youtube.com/embed/<?php echo $video_id; ?>" frameborder="0" allowfullscreen></iframe>
-	            </div>
-	        </div>
-	        <div class="col-sm-4">
-	            <div class="fb-page" data-href="https://www.facebook.com/TrabajoParaTodos" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/TrabajoParaTodos"><a href="https://www.facebook.com/TrabajoParaTodos">Ministerio de Trabajo y Promoción del Empleo</a></blockquote></div></div>
-	        </div>
-	    </div>
-	</div>
-
+    </div>
 <?php endif; ?>
 
-<div class="sponsors hidden">
+    
+<div class="videos-wrapper hidden">
     <div class="container">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/sponsors.jpg" class="img-responsive">
+        <?php if( get_field( "url_video_youtube") ):
+
+            $url = get_field('url_video_youtube');
+
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match)) {
+                $video_id = $match[1];
+            }
+        ?>
+            <div class="col-sm-8">
+                <div class="header-video">Videos</div>
+                <div class="clearfix"></div>
+                <div class="video-container">
+    				<iframe width="560" height="315" src="//www.youtube.com/embed/<?php echo $video_id; ?>" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if( get_field( "pagina_de_facebook") ):
+
+            $url = get_field('pagina_de_facebook');
+         ?>
+        
+        <div class="col-sm-4">
+            <div class="fb-page" data-href="<?php echo $url; ?>" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="<?php echo $url; ?>"><a href="<?php echo $url; ?>">Ministerio de Trabajo y Promoción del Empleo</a></blockquote></div></div>
+        </div>
+        <?php endif; ?>
     </div>
 </div>
+
+<?php if( have_rows('enlaces') ): ?>
+    <div class="sponsors hidden">
+        <div class="container">
+            <?php 
+                $counter = 0;
+                $offsetClass = "";
+            ?>
+            <?php while( have_rows('enlaces') ): the_row(); 
+                
+                $image = get_sub_field('imagen');
+                $url = get_sub_field('url');
+                $archivo = get_sub_field('archivo');
+                $url_o_archivo = get_sub_field('url_o_archivo');
+                $link = ($url_o_archivo == "url") ? $url : $archivo["url"];
+                $counter++;
+
+                $offsetClass = ($counter==1) ? "col-sm-offset-1" : "";
+
+            ?>
+
+                <div class="enlace col-sm-2 <?php echo $offsetClass; ?>">
+                    <a href="<?php echo $link; ?>" target="_blank"><img src="<?php echo $image['url']; ?>" class="img-responsive"></a>
+                </div>
+
+                <?php if($counter == 5): ?>
+                    <div class="clearfix"></div>
+                    <?php $counter = 0 ?>
+                <?php endif; ?>
+
+            <?php endwhile; ?>
+        </div>
+    </div>
+<?php endif; ?>
 
 <?php get_footer(); ?>
