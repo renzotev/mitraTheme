@@ -81,12 +81,14 @@ get_header();
                 <div role="tabpanel" class="tab-pane active" id="tab-programas">
                     <div class="col-sm-6">
                         <a href="#" class="button-icon-text btn-1">
+                            <div class="before"></div>
                             <span class="title-btn">Perú Responsable</span>
                             <span class="text-btn">Programa Nacional de Promoción de la Responsabilidad Social Empresarial</span>
                         </a>
                     </div>
                     <div class="col-sm-6">
                         <a href="#" class="button-icon-text btn-2">
+                            <div class="before"></div>
                             <span class="title-btn">Trabaja Perú</span>
                             <span class="text-btn">Programa para la Generación de Empleo Social Inclusivo</span>
                         </a>
@@ -96,12 +98,14 @@ get_header();
 
                     <div class="col-sm-6">
                         <a href="#" class="button-icon-text btn-3">
+                            <div class="before"></div>
                             <span class="title-btn">Impulsa Perú</span>
                             <span class="text-btn">Programa Nacional para la Promoción de Oportunidades Laborales</span>
                         </a>
                     </div>
                     <div class="col-sm-6">
                         <a href="#" class="button-icon-text btn-4">
+                            <div class="before"></div>
                             <span class="title-btn">Jóvenes Productivos</span>
                             <span class="text-btn">Programa Nacional de Empleo Juvenil</span>
                         </a>
@@ -109,6 +113,35 @@ get_header();
 
                     <div class="clearfix"></div>
                 </div>
+
+                <!--<?php if( have_rows('tab_1') ): ?>
+                    <div role="tabpanel" class="tab-pane active" id="tab-programas">
+                        <?php while( have_rows('tab_1') ): the_row(); 
+                            
+                            $titulo_boton = get_sub_field('titulo_boton');
+                            $descripcion = get_sub_field('descripcion');
+                            $icono = get_sub_field('icono');
+                            $url = get_sub_field('url');
+
+                        ?>
+                             <?php if( have_rows('contenido') ): ?>
+                                <?php while( have_rows('contenido') ): the_row(); 
+
+                                ?>
+                                    <div class="col-sm-6">
+                                        <a href="<?php echo $url; ?>" class="button-icon-text btn-4">
+                                            <span class="title-btn"><?php echo $titulo_boton; ?></span>
+                                            <span class="text-btn"><?php echo $descripcion; ?></span>
+                                        </a>
+                                    </div>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
+
+                        <?php endwhile; ?>
+                    </div>
+                <?php endif; ?>
+                -->
+
                 <div role="tabpanel" class="tab-pane" id="tab-consejos">
                     <div class="col-sm-3 img-consejo">
                         <img src="<?php echo get_template_directory_uri(); ?>/img/consejo-1.jpg" class="img-responsive">
@@ -252,7 +285,7 @@ get_header();
             }
         ?>
             <div class="col-sm-8">
-                <div class="header-video">Videos</div>
+                <div class="header-video">Video</div>
                 <div class="clearfix"></div>
                 <div class="video-container">
     				<iframe width="560" height="315" src="//www.youtube.com/embed/<?php echo $video_id; ?>" frameborder="0" allowfullscreen></iframe>

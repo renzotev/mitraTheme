@@ -5,6 +5,18 @@ jQuery(function(){
 		jQuery(this).parent().siblings().removeClass('open');
 		jQuery(this).parent().toggleClass('open');
 	});
+
+	var activeMenu = function () {
+		var liMenu = jQuery('.navbar .nav.navbar-nav > li');
+
+		liMenu.each(function( index ) {
+			if(jQuery('.navbar .nav.navbar-nav > li').eq(index).find('.active').length) {
+				jQuery('.navbar .nav.navbar-nav > li').eq(index).addClass('active');
+			}
+		});
+	}
+
+	activeMenu();
 	
 	if (jQuery('#slides').length) {
 		jQuery('#slides').slidesjs({

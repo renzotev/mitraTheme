@@ -16,12 +16,28 @@
         <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/owl.carousel.css">
         <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">
+        <link rel="shortcut icon" type="image/x-icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
 
         <script src="<?php echo get_template_directory_uri(); ?>/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
 
         <?php wp_enqueue_script("jquery"); ?>
         <?php wp_head(); ?>
+
+        <?php if( have_rows('redes_sociales', 'option') ): ?>
+            <style type="text/css">
+                <?php while( have_rows('redes_sociales', 'option') ): the_row(); 
+                    
+                    $colorRS = get_sub_field('color');
+                    $colorRS = ltrim($colorRS, '#');
+
+                    ?>
+
+                    <?php echo "header .logos-media .social-media li .c$colorRS:hover"; ?> { background-color: <?php echo "#$colorRS"; ?>; }
+
+                <?php endwhile; ?>
+            </style>
+        <?php endif; ?>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -46,15 +62,15 @@
                         </li>
 
                         <li class="icon-intranet">
-                            <a href="#">Intranet</a>
+                            <a href="https://sites.google.com/a/trabajo.gob.pe/intranet/home" target="_blank">Intranet</a>
                         </li>
 
                         <li class="icon-faq">
-                            <a href="#">Preguntas Frecuentes - FAQ</a>
+                            <a href="http://blogs.up.edu.pe/mitra/servicios/preguntas-frecuentes-faq/">Preguntas Frecuentes - FAQ</a>
                         </li>
 
                         <li class="icon-portal">
-                            <a href="#">Portal de Transparencia</a>
+                            <a href="http://www.peru.gob.pe/transparencia/pep_transparencia_lista_planes_frame.asp?id_entidad=141&id_tema=1" target="_blank">Portal de Transparencia</a>
                         </li>
                     </ul>
                 </div>
@@ -91,11 +107,13 @@
 								
 								$image = get_sub_field('imagen');
 								$link = get_sub_field('url');
+                                $colorRS = get_sub_field('color');
+                                $colorRS = str_replace("#", "c", $colorRS);
 
 								?>
 
 								<li>
-									<a href="<?php echo $link; ?>" target="_blank">
+									<a href="<?php echo $link; ?>" target="_blank" class="<?php echo $colorRS; ?>">
 										<img src="<?php echo $image['url']; ?>" />
 									</a>
 								</li>
@@ -148,62 +166,64 @@
 		    $the_query = new WP_Query( $args );  
 		?>
 
-        <div class="slider hidden">
-            <div class="container">
-                <div id="slides" class="slides-wrapper">
-                    <?php if ( $the_query->have_posts() ) : ?>
-		                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+        <?php if ( $the_query->have_posts() && is_front_page() ) : ?>
+            <div class="slider hidden">
+                <div class="container">
+                    <div id="slides" class="slides-wrapper">
+    	                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 
-			                <div class="slide">
-		                        <div class="caption">
-		                            <div class="content-caption">
-		                                <p><?php the_title(); ?></p>
-		                                <p class="ref">
-		                                	<?php if( get_field( 'subtitulo') ):
+    		                <div class="slide">
+    	                        <div class="caption">
+    	                            <div class="content-caption">
+    	                                <a href="<?php the_permalink(); ?>" class="content-link">
+                                            <p><?php the_title(); ?></p>
 
-												$text = get_field('subtitulo');
-										 	?>
+        	                                <p class="ref">
+        	                                	<?php if( get_field( 'subtitulo') ):
 
-												<em><?php echo $text; ?></em>
-											<?php endif; ?>
-		                                </p>
-		                                <a href="<?php the_permalink(); ?>" class="see-more">Leer más</a>
-		                            </div>
-		                        </div>
+        											$text = get_field('subtitulo');
+        									 	?>
 
-		                        <?php
-									if ( has_post_thumbnail() ) {
-										$src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), "notaPrensaBanner");
-									} 
-								?>
-								<div class="image-slider" style="background-image:url(<?php echo $src[0] ?>)"></div>
-		                    </div>
+        											<em><?php echo $text; ?></em>
+        										<?php endif; ?>
+        	                                </p>
+                                        </a>
+    	                                <a href="<?php the_permalink(); ?>" class="see-more">Leer más</a>
+    	                            </div>
+    	                        </div>
 
-		                <?php endwhile; ?>
+    	                        <?php
+    								if ( has_post_thumbnail() ) {
+    									$src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), "notaPrensaBanner");
+    								} 
+    							?>
+    							<div class="image-slider" style="background-image:url(<?php echo $src[0] ?>)"></div>
+    	                    </div>
 
-				        <?php wp_reset_postdata(); ?>
+    	                <?php endwhile; ?>
 
-				    <?php endif; ?>
+    			        <?php wp_reset_postdata(); ?>
+                    </div>
                 </div>
             </div>
-        </div>
+        
+            <div class="consult-phone hidden">
+                <div class="container">
+                    <figure>
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/phone-consult.png">
+                        <figcaption>
+                            <span class="text-top">Consultas Laborales</span>
+                            
+                            <?php if( get_field( "telefono_consultas_laborales", 'option') ):
 
-        <div class="consult-phone hidden">
-            <div class="container">
-                <figure>
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/phone-consult.png">
-                    <figcaption>
-                        <span class="text-top">Consultas Laborales</span>
-                        
-                        <?php if( get_field( "telefono_consultas_laborales", 'option') ):
+    							$text = get_field('telefono_consultas_laborales', 'option');
+    						 ?>
 
-							$text = get_field('telefono_consultas_laborales', 'option');
-						 ?>
-
-							<span class="number"><?php echo $text; ?></span>
-						<?php endif; ?>
-                        <span class="text-bottom">Linea Gratuita</span>
-                    </figcaption>
-                </figure>
+    							<span class="number"><?php echo $text; ?></span>
+    						<?php endif; ?>
+                            <span class="text-bottom">Linea Gratuita</span>
+                        </figcaption>
+                    </figure>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>

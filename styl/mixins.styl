@@ -1,0 +1,43 @@
+box-shadow()
+	-moz-box-shadow arguments
+	-webkit-box-shadow arguments
+	box-shadow arguments
+
+box-sizing()
+	-webkit-box-sizing arguments
+	-moz-box-sizing arguments
+	box-sizing arguments
+	
+border-radius()
+	-webkit-border-radius arguments
+	-moz-border-radius arguments
+	border-radius arguments
+	
+opacity(n)
+	-ms-filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
+	filter unquote('alpha(opacity=' + round(n * 100) + ')')
+	-moz-opacity n
+	-khtml-opacity n
+	opacity n
+	
+background-gradient(a, b)
+	background a
+	background -webkit-gradient(linear, 0 0, 0 bottom, from(a), to(b))
+	background -webkit-linear-gradient(a, b)
+	background -moz-linear-gradient(a, b)
+	background -ms-linear-gradient(a, b)
+	background -o-linear-gradient(a, b)
+	background linear-gradient(a, b)
+	
+	
+transform()
+	-webkit-transform arguments
+	-moz-transform arguments
+	-o-transform arguments
+	-ms-transform arguments
+
+transition()
+	-webkit-transition arguments
+	-moz-transition arguments
+	-o-transition arguments
+	transition arguments

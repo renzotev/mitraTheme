@@ -81,3 +81,11 @@
 
 	     }
 	}
+
+
+	/* REMOVE meta boxes */
+
+	function remove_my_post_metaboxes() {
+		remove_meta_box( 'postbox-container-2','post','normal' ); // Author Metabox
+	}
+	add_action('admin_menu','remove_my_post_metaboxes');

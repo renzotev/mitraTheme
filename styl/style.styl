@@ -1,44 +1,7 @@
 rojo = #e91b23
 gray_body = #4d4d4d
 
-box-shadow()
-	-moz-box-shadow arguments
-	-webkit-box-shadow arguments
-	box-shadow arguments
-
-box-sizing()
-	-webkit-box-sizing arguments
-	-moz-box-sizing arguments
-	box-sizing arguments
-	
-border-radius()
-	-webkit-border-radius arguments
-	-moz-border-radius arguments
-	border-radius arguments
-	
-opacity(n)
-	-ms-filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
-	filter unquote('alpha(opacity=' + round(n * 100) + ')')
-	-moz-opacity n
-	-khtml-opacity n
-	opacity n
-	
-background-gradient(a, b)
-	background a
-	background -webkit-gradient(linear, 0 0, 0 bottom, from(a), to(b))
-	background -webkit-linear-gradient(a, b)
-	background -moz-linear-gradient(a, b)
-	background -ms-linear-gradient(a, b)
-	background -o-linear-gradient(a, b)
-	background linear-gradient(a, b)
-	
-	
-transform(n)
-	-webkit-transform n
-	-moz-transform n
-	-o-transform n
-	-ms-transform n
-
+@import ("mixins.styl")
 @import ("fonts.styl")
 
 /*
@@ -90,10 +53,18 @@ header
 			margin 0
 			text-decoration none
 			
+			&:hover
+				li
+					opacity .5
+			
 			li
 				display inline-block
 				position relative
 				margin 0 10px
+				transition all .5s
+				
+				&:hover
+					opacity 1
 				
 				&:last-child
 					margin-right 0 !important
@@ -111,6 +82,8 @@ header
 					color white
 					display block
 					padding 10px 0
+					text-decoration none
+					
 				
 				&.icon-mapa
 					&:before
@@ -172,6 +145,9 @@ header
 
 				a
 					display block
+					background-color #969696
+					transition all .5s
+					border-radius 50%
 	
 	.navbar
 		background-color rojo
@@ -291,8 +267,13 @@ header
 				height 30px
 				max-width 260px
 				line-height 14px
+				transition all .5s
+				
+				&:hover
+					background-color #646464
 			
-			&.active
+			&.active,
+			&.current_item
 				span
 					background-color #FF0000
 					color white
@@ -308,7 +289,6 @@ header
 
 .carousel-wrapper
 	padding 30px 0
-	border-bottom 1px dashed #969696
 	
 	.owl-next,
 	.owl-prev
@@ -689,9 +669,9 @@ header
 				font-weight bold
 				position relative
 				
-				&:after
+				.after
+					display block
 					position absolute
-					content ""
 					background url("img/icon-arrow-bottom.png") no-repeat 0 0
 					width 19px
 					height 19px
@@ -1064,9 +1044,18 @@ header
 			margin-bottom 20px
 			display block
 			text-decoration none
+			
+			&:hover
+				figure
+					.img-responsive
+						transform scale(1.1,1.1)
+				
+				figcaption
+					background-color #FF0000
 	
 	figure
 		text-align center
+		overflow hidden
 		
 		figcaption
 			color white
@@ -1077,6 +1066,8 @@ header
 			height 98px
 			display table
 			width 100%
+			position relative
+			transition all .5s
 			
 			span
 				display table-cell
@@ -1087,6 +1078,7 @@ header
 		
 		.img-responsive
 			display inline-block
+			transition all .5s
 
 .slider
 	position relative
@@ -1111,25 +1103,6 @@ header
 			width 100%
 			position relative
 			
-			&:before,
-			&:after
-				z-index -1
-				position absolute
-				content ""
-				bottom 15px
-				left 10px
-				width 50%
-				top 80%
-				max-width 300px
-				background #777
-				box-shadow 0 15px 10px #777
-				transform rotate(-3deg)
-			
-			&:after
-				transform rotate(3deg)
-				right 10px
-				left auto
-			
 			li
 				text-align center
 				display inline-block
@@ -1145,10 +1118,11 @@ header
 					color #b0b0b0
 					border-radius 50%
 					line-height 25px
+					transition all .5s
 					
 					&:hover
-						background-color  #b0b0b0
-						color #b0b0b0
+						background-color red
+						color red
 					
 					&.active
 						background-color red
@@ -1168,6 +1142,11 @@ header
 				color white
 				padding 30px 140px 30px 30px
 				
+				.content-link
+					display block
+					text-decoration none
+					color white
+				
 				p
 					font-weight bold
 					
@@ -1181,6 +1160,10 @@ header
 					text-decoration none
 					font-size 12px
 					padding 5px 20px
+					transition all .5s
+					
+					&:hover
+						background-gradient(#343434, #888888)
 		
 		.image-slider
 			width 100%
@@ -1213,7 +1196,6 @@ header
 .tabs-section
 	margin-bottom 30px
 	padding-bottom 20px
-	border-bottom 1px dashed #969696
 
 	.nav-tabs
 		li
@@ -1365,7 +1347,6 @@ header
 
 .videos-wrapper
 	margin-top 30px
-	border-bottom 1px dashed #969696
 	padding-bottom 30px
 	
 	.col-sm-4

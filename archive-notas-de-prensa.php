@@ -1,14 +1,6 @@
 <?php get_header(); ?>
 
-	<div class="breadcrumb-wrapper hidden">
-	    <div class="container">
-	        <ol class="breadcrumb">
-	            <li><a href="<?php echo site_url(); ?>">Inicio</a></li>
-	            <li><a href="<?php echo get_post_type_archive_link( 'notas-de-prensa' ); ?>">Prensa</a></li>
-	            <li class="active"><span><?php post_type_archive_title(); ?></span></li>
-	        </ol>
-	    </div>
-	</div>
+	<?php get_template_part( 'breadcrumbs' ); ?>
 
 	<div class="general-content">
 	    <div class="container">
@@ -61,10 +53,5 @@
 
 	    </div>
 	</div>
-
-	<script type="text/javascript">
-		jQuery(".navPrensa").addClass("active");
-	</script>
-
 
 <?php get_footer(); ?>
