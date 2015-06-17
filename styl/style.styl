@@ -1080,6 +1080,32 @@ header
 			display inline-block
 			transition all .5s
 
+
+.scrollToTop
+	display none
+	height 40px
+	width 40px
+	position fixed
+	bottom 100px
+	right 10px
+	z-index 999
+	box-shadow 0 0 10px rgba(0, 0, 0, 0.05)
+	background rojo
+	opacity 0
+	color white
+	text-align center
+	transition all .5s
+	cursor pointer
+	
+	&:hover
+		color white
+		opacity 1 !important
+	
+	i
+		font-size 16px
+		line-height 40px
+	
+
 .slider
 	position relative
 	z-index 2

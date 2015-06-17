@@ -21,7 +21,9 @@
                     </div>
                 </div>
             </div>
-        </footer>   
+        </footer>
+
+        <div class="scrollToTop"><i class="glyphicon glyphicon-chevron-up"></i></div>
         
         <script src="<?php echo get_template_directory_uri(); ?>/js/vendor/bootstrap.min.js"></script>
         <script src="<?php echo get_template_directory_uri(); ?>/js/vendor/jquery.slides.min.js"></script>

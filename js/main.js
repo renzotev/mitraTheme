@@ -1,4 +1,7 @@
 jQuery(function(){
+
+	// ---------------------- MENU -----------------------------------
+ 
 	jQuery('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
 		event.preventDefault(); 
 		event.stopPropagation(); 
@@ -17,6 +20,8 @@ jQuery(function(){
 	}
 
 	activeMenu();
+
+	// ---------------------------- SLIDER -------------------------------
 	
 	if (jQuery('#slides').length) {
 		jQuery('#slides').slidesjs({
@@ -30,6 +35,8 @@ jQuery(function(){
 		});
 	}
 
+	// ----------------- CAROUSEL -------------------------
+
 	if (jQuery('.owl-carousel').length) {
 		jQuery('.owl-carousel').owlCarousel({
 		    loop:true,
@@ -42,4 +49,34 @@ jQuery(function(){
 	        navText: ["<span class='glyphicon glyphicon-chevron-left'></span>","<span class='glyphicon glyphicon-chevron-right'></span>"]
 		});
 	}
+
+	// ----------------- BACK TO TOP --------------------------
+
+	var scrollTimeOut;
+	var flag = true;
+
+	jQuery(window).scroll(function(){
+		if (jQuery(this).scrollTop() > 500) {
+			//clearTimeout(scrollTimeOut);
+			jQuery('.scrollToTop').css({
+				'display' : 'block',
+				'opacity' : '.8'
+			});
+		} else {
+			if (flag) {
+				flag = false;
+				jQuery('.scrollToTop').css('opacity', '0');
+
+				scrollTimeOut = setTimeout(function() {
+					jQuery('.scrollToTop').hide();
+					flag = true;
+				}, 500);
+			}
+		}
+	});
+	
+	jQuery('.scrollToTop').click(function(){
+		jQuery('html, body').animate({scrollTop : 0},800);
+		return false;
+	});
 });
