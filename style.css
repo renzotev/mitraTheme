@@ -9,11 +9,11 @@ Theme Name: Ministerio de trabajo
 .h6,
 h1,
 h2,
-h3,
-h4,
+h3, 
+h4, 
 h5,
 h6 {
-  font-weight: bold;
+  font-weight: bold; 
 }
 body {
   background: url("img/bg.png") repeat-x center top;
