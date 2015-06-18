@@ -99,18 +99,65 @@ get_header();
 		        	</tr>
 	        	</thead>
 
-	        	<tbody style="display:none">
-		    		<tr>
-		    			<td>Cartas Fianza de Empresas de Intermediación Laboral a favor del Ministerio de Trabajo y Promoción del Empleo</td>
-		    			<td>
-		    				<a href="#" target="_blank" class="pdf-link-icon"></a>
-		    				<a href="#" target="_blank" class="excel-link-icon"></a>
-		    			</td>
-		    		</tr>
-				</tbody>
-
 				<tbody>
 					<?php while( have_rows('servicios_virtuales') ): the_row(); ?>
+		            	<tr>
+		            		<td><?php the_sub_field( "texto" ); ?></td>
+			                <?php if( have_rows('archivo_o_enlace') ): ?>
+			                	<td>
+			                        <?php while( have_rows('archivo_o_enlace') ): the_row(); 
+
+			                        	$tipo = get_sub_field('tipo');
+			                        	$archivo = get_sub_field('archivo');
+			                        	$enlace = get_sub_field('enlace');
+			                        	$archivoClass = "explorer";
+			                        	$excelExts = array("xla","xlam","xls","xlsb","xlsm","xlsx","xlt","xltm","xltx","xlw","xml"); 
+
+			                        	if ($tipo == 'archivo') {
+			                        		$ext = pathinfo($archivo['url'], PATHINFO_EXTENSION);
+			                        		
+			                        		foreach ($excelExts as $val) {
+											    if ($val == $ext) {
+											    	$archivoClass = "excel";
+											    	break;
+												}
+											}
+
+											if ($archivoClass != "excel" && $ext == "pdf") {
+												$archivoClass = "pdf";
+											}
+			                        	} else {
+			                        		$archivoClass = "explorer";
+			                        	}
+			                        	
+			                        ?>
+										<a target="_blank" href="<?php echo $archivo['url']; ?>" class="<?php echo $archivoClass; ?>-link-icon"></a>
+			                        <?php endwhile; ?>
+			                    </td>
+			                <?php endif; ?>
+		            	</tr>
+		            <?php endwhile; ?>
+	            </tbody>
+	        </table>
+
+        <?php endif; ?>
+
+
+
+        <?php if( have_rows('informacion') ):
+
+			$titulo_3 = get_field('titulo_3');
+	 	?>
+
+	        <table class="table-responsive table-downloads two-cols">
+	        	<thead>
+	        		<tr>
+		        		<th colspan="2"><?php echo $titulo_3; ?></th>
+		        	</tr>
+	        	</thead>
+
+				<tbody>
+					<?php while( have_rows('informacion') ): the_row(); ?>
 		            	<tr>
 		            		<td><?php the_sub_field( "texto" ); ?></td>
 			                <?php if( have_rows('archivo_o_enlace') ): ?>
