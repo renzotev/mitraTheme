@@ -147,6 +147,7 @@ get_header();
         <?php if( have_rows('informacion') ):
 
 			$titulo_3 = get_field('titulo_3');
+			$counter = 0;
 	 	?>
 
 	        <table class="table-responsive table-downloads two-cols">
@@ -157,49 +158,82 @@ get_header();
 	        	</thead>
 
 				<tbody>
-					<?php while( have_rows('informacion') ): the_row(); ?>
-		            	<tr>
-		            		<td><?php the_sub_field( "texto" ); ?></td>
+					<?php while( have_rows('informacion') ): the_row(); 
+
+							$tipo_de_fila = get_sub_field('tipo_de_fila');
+							$texto = get_sub_field('texto');
+							$subtitulo = get_sub_field('subtitulo')
+							
+						?>
+
+						<?php if($tipo_de_fila == "subseccion"): ?>
+							<tr>
+			        			<th colspan="2"><?php echo $subtitulo; ?></th>
+			        		</tr>
+						<?php else: ?>
+			            	
+			            	<?php if($counter == 0): 
+			            		/* OPEN ROW */
+			            	?> 
+			            		<tr> 
+			            	<?php endif; ?>
+
+		            		
 			                <?php if( have_rows('archivo_o_enlace') ): ?>
 			                	<td>
-			                        <?php while( have_rows('archivo_o_enlace') ): the_row(); 
+			                		<table class="table-responsive table-downloads">
+			                			<tr>
+			                				<td><?php echo $texto; ?></td>
+			                				<td>
+						                        <?php while( have_rows('archivo_o_enlace') ): the_row(); 
+						                        	$tipo = get_sub_field('tipo');
+						                        	$archivo = get_sub_field('archivo');
+						                        	$enlace = get_sub_field('enlace');
+						                        	$archivoClass = "explorer";
+						                        	$excelExts = array("xla","xlam","xls","xlsb","xlsm","xlsx","xlt","xltm","xltx","xlw","xml"); 
 
-			                        	$tipo = get_sub_field('tipo');
-			                        	$archivo = get_sub_field('archivo');
-			                        	$enlace = get_sub_field('enlace');
-			                        	$archivoClass = "explorer";
-			                        	$excelExts = array("xla","xlam","xls","xlsb","xlsm","xlsx","xlt","xltm","xltx","xlw","xml"); 
+						                        	if ($tipo == 'archivo') {
+						                        		$ext = pathinfo($archivo['url'], PATHINFO_EXTENSION);
+						                        		
+						                        		foreach ($excelExts as $val) {
+														    if ($val == $ext) {
+														    	$archivoClass = "excel";
+														    	break;
+															}
+														}
 
-			                        	if ($tipo == 'archivo') {
-			                        		$ext = pathinfo($archivo['url'], PATHINFO_EXTENSION);
-			                        		
-			                        		foreach ($excelExts as $val) {
-											    if ($val == $ext) {
-											    	$archivoClass = "excel";
-											    	break;
-												}
-											}
-
-											if ($archivoClass != "excel" && $ext == "pdf") {
-												$archivoClass = "pdf";
-											}
-			                        	} else {
-			                        		$archivoClass = "explorer";
-			                        	}
-			                        	
-			                        ?>
-										<a target="_blank" href="<?php echo $archivo['url']; ?>" class="<?php echo $archivoClass; ?>-link-icon"></a>
-			                        <?php endwhile; ?>
+														if ($archivoClass != "excel" && $ext == "pdf") {
+															$archivoClass = "pdf";
+														}
+						                        	} else {
+						                        		$archivoClass = "explorer";
+						                        	}
+						                        	
+						                        ?>
+													<a target="_blank" href="<?php echo $archivo['url']; ?>" class="<?php echo $archivoClass; ?>-link-icon"></a>
+						                        <?php endwhile; ?>
+				                        	</td>
+				                        </tr>
+			                        </table>
 			                    </td>
 			                <?php endif; ?>
-		            	</tr>
-		            <?php endwhile; ?>
+
+			                <?php if($counter % 2 == 0 && $counter != 0): ?> 
+			            		</tr><tr> 
+			            	<?php endif; 
+			            		$counter++;
+			            	?>
+		            	<?php endif; ?>
+		            <?php endwhile; 
+		            	/* CLOSE ROW*/
+		            ?>
+		            		</tr>
 	            </tbody>
 	        </table>
 
         <?php endif; ?>
 
-        <table class="table-responsive table-downloads two-cols">
+        <table class="table-responsive table-downloads two-cols" style="display:none">
         	<thead>
 	        	<tr>
 	        		<th colspan="2">Información</th>
