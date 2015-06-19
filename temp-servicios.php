@@ -92,7 +92,7 @@ get_header();
 			$titulo_2 = get_field('titulo_2');
 	 	?>
 
-	        <table class="table-responsive table-downloads">
+	        <table class="table-responsive table-downloads" id="servicios-virtuales">
 	        	<thead>
 	        		<tr>
 		        		<th colspan="2"><?php echo $titulo_2; ?></th>
@@ -147,10 +147,11 @@ get_header();
         <?php if( have_rows('informacion') ):
 
 			$titulo_3 = get_field('titulo_3');
-			$counter = 0;
+			$counter = 1;
+			$rLength = count( get_field('informacion') );
 	 	?>
 
-	        <table class="table-responsive table-downloads two-cols">
+	        <table class="table-responsive table-downloads two-cols" id="informacion">
 	        	<thead>
 	        		<tr>
 		        		<th colspan="2"><?php echo $titulo_3; ?></th>
@@ -162,25 +163,26 @@ get_header();
 
 							$tipo_de_fila = get_sub_field('tipo_de_fila');
 							$texto = get_sub_field('texto');
-							$subtitulo = get_sub_field('subtitulo')
+							$subtitulo = get_sub_field('subtitulo');
 							
 						?>
 
-						<?php if($tipo_de_fila == "subseccion"): ?>
+						<?php if($tipo_de_fila == "subseccion"): 
+							$rLength--;
+						?>
 							<tr>
 			        			<th colspan="2"><?php echo $subtitulo; ?></th>
 			        		</tr>
-						<?php else: ?>
+						<?php else:?>
 			            	
-			            	<?php if($counter == 0): 
+			            	<?php if($counter == 0 || $counter % 2 != 0) {
 			            		/* OPEN ROW */
-			            	?> 
-			            		<tr> 
-			            	<?php endif; ?>
+			            			echo "<tr>";
+			            		}
+			            	?>
 
-		            		
 			                <?php if( have_rows('archivo_o_enlace') ): ?>
-			                	<td>
+			                	<td class="<?php echo $counter.' '.$rLength; ?>">
 			                		<table class="table-responsive table-downloads">
 			                			<tr>
 			                				<td><?php echo $texto; ?></td>
@@ -218,16 +220,17 @@ get_header();
 			                    </td>
 			                <?php endif; ?>
 
-			                <?php if($counter % 2 == 0 && $counter != 0): ?> 
-			            		</tr><tr> 
-			            	<?php endif; 
-			            		$counter++;
+			            	<?php
+			            		if(($counter % 2 == 0 && $counter != 0) || $counter == $rLength) {
+			            			/*CLOSE ROW*/
+			            			echo "</tr>";
+			            		}
+			            		$counter ++;
 			            	?>
+			            	
 		            	<?php endif; ?>
-		            <?php endwhile; 
-		            	/* CLOSE ROW*/
-		            ?>
-		            		</tr>
+		            <?php endwhile; ?>
+		            		
 	            </tbody>
 	        </table>
 
