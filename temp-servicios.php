@@ -143,23 +143,33 @@ get_header();
         <?php endif; ?>
 
 
+		<?php 
+			$dataContainer = array('servicios_virtuales', 'informacion');
+			$sectionTitle = array('titulo_2', 'titulo_3');
+			$tableType = array('tipo_de_tabla_2', 'tipo_de_tabla_3');
+		?>
 
-        <?php if( have_rows('informacion') ):
+		<?php for ($i = 0; $i < count($dataContainer); $i++): ?>
+			
 
-			$titulo_3 = get_field('titulo_3');
+        <?php if( have_rows($dataContainer[$i]) ):
+
+			$titulo = get_field($sectionTitle[$i]);
 			$counter = 1;
-			$rLength = count( get_field('informacion') );
+			$tipo_de_tabla = get_field($tableType[$i]);
+			$rLength = count( get_field($dataContainer[$i]) );
+			$tableClass = ($tipo_de_tabla == 'una' ? '' : 'two-cols');
 	 	?>
-
-	        <table class="table-responsive table-downloads two-cols" id="informacion">
+			
+	        <table class="table-responsive table-downloads <?php echo $tableClass; ?>" id="<?php echo $dataContainer[$i]; ?>">
 	        	<thead>
 	        		<tr>
-		        		<th colspan="2"><?php echo $titulo_3; ?></th>
+		        		<th colspan="2"><?php echo $titulo; ?></th>
 		        	</tr>
 	        	</thead>
 
 				<tbody>
-					<?php while( have_rows('informacion') ): the_row(); 
+					<?php while( have_rows($dataContainer[$i]) ): the_row(); 
 
 							$tipo_de_fila = get_sub_field('tipo_de_fila');
 							$texto = get_sub_field('texto');
@@ -173,18 +183,25 @@ get_header();
 							<tr>
 			        			<th colspan="2"><?php echo $subtitulo; ?></th>
 			        		</tr>
-						<?php else:?>
+						<?php else: ?>
 			            	
-			            	<?php if($counter == 0 || $counter % 2 != 0) {
-			            		/* OPEN ROW */
+			            	<?php 
+			            		if ($tipo_de_tabla == 'una') {
 			            			echo "<tr>";
+			            		} else {
+				            		if($counter == 0 || $counter % 2 != 0) {
+				            			/* OPEN ROW */
+				            			echo "<tr>";
+				            		}
 			            		}
 			            	?>
 
 			                <?php if( have_rows('archivo_o_enlace') ): ?>
-			                	<td class="<?php echo $counter.' '.$rLength; ?>">
+			                	<?php if($tipo_de_tabla != 'una'): ?>
+			                	<td>
 			                		<table class="table-responsive table-downloads">
 			                			<tr>
+			                	<?php endif; ?>
 			                				<td><?php echo $texto; ?></td>
 			                				<td>
 						                        <?php while( have_rows('archivo_o_enlace') ): the_row(); 
@@ -215,15 +232,21 @@ get_header();
 													<a target="_blank" href="<?php echo $archivo['url']; ?>" class="<?php echo $archivoClass; ?>-link-icon"></a>
 						                        <?php endwhile; ?>
 				                        	</td>
+				                <?php if($tipo_de_tabla != 'una'): ?>
 				                        </tr>
 			                        </table>
 			                    </td>
+			                    <?php endif; ?>
 			                <?php endif; ?>
 
 			            	<?php
-			            		if(($counter % 2 == 0 && $counter != 0) || $counter == $rLength) {
-			            			/*CLOSE ROW*/
-			            			echo "</tr>";
+			            		if ($tipo_de_tabla == 'una') {
+			            			echo "<tr>";
+			            		} else {
+				            		if(($counter % 2 == 0 && $counter != 0) || $counter == $rLength) {
+			            				/*CLOSE ROW*/
+			            				echo "</tr>";
+			            			}
 			            		}
 			            		$counter ++;
 			            	?>
@@ -236,110 +259,8 @@ get_header();
 
         <?php endif; ?>
 
-        <table class="table-responsive table-downloads two-cols" style="display:none">
-        	<thead>
-	        	<tr>
-	        		<th colspan="2">Información</th>
-	        	</tr>
-        	</thead>
+        <?php endfor; ?>
 
-        	<tbody>
-        		<tr>
-        			<th colspan="2">Para Trabajadores</th>
-        		</tr>
-	    		<tr>
-	    			<td>
-	    				<table class="table-responsive table-downloads">
-	    					<tr>
-				    			<td>Beneficios de la Nueva Ley Procesal del Trabajo</td>
-				    			<td>
-				    				<a href="#" target="_blank" class="pdf-link-icon"></a>
-				    			</td>
-				    		</tr>
-	    				</table>
-	    			</td>
-	    			<td>
-	    				<table class="table-responsive table-downloads">
-	    					<tr>
-				    			<td>La Convención Colectiva</td>
-				    			<td>
-				    				<a href="#" target="_blank" class="pdf-link-icon"></a>
-				    			</td>
-				    		</tr>
-	    				</table>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<table class="table-responsive table-downloads">
-	    					<tr>
-				    			<td>Beneficios de la Nueva Ley Procesal del Trabajo</td>
-				    			<td>
-				    				<a href="#" target="_blank" class="pdf-link-icon"></a>
-				    			</td>
-				    		</tr>
-	    				</table>
-	    			</td>
-	    			<td>
-	    				<table class="table-responsive table-downloads">
-	    					<tr>
-				    			<td>La Convención Colectiva</td>
-				    			<td>
-				    				<a href="#" target="_blank" class="pdf-link-icon"></a>
-				    			</td>
-				    		</tr>
-	    				</table>
-	    			</td>
-	    		</tr>
-	    		<tr>
-        			<th colspan="2">Para Empresas</th>
-        		</tr>
-	    		<tr>
-	    			<td>
-	    				<table class="table-responsive table-downloads">
-	    					<tr>
-				    			<td>Beneficios de la Nueva Ley Procesal del Trabajo</td>
-				    			<td>
-				    				<a href="#" target="_blank" class="pdf-link-icon"></a>
-				    			</td>
-				    		</tr>
-	    				</table>
-	    			</td>
-	    			<td>
-	    				<table class="table-responsive table-downloads">
-	    					<tr>
-				    			<td>La Convención Colectiva</td>
-				    			<td>
-				    				<a href="#" target="_blank" class="pdf-link-icon"></a>
-				    			</td>
-				    		</tr>
-	    				</table>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<table class="table-responsive table-downloads">
-	    					<tr>
-				    			<td>Beneficios de la Nueva Ley Procesal del Trabajo</td>
-				    			<td>
-				    				<a href="#" target="_blank" class="pdf-link-icon"></a>
-				    			</td>
-				    		</tr>
-	    				</table>
-	    			</td>
-	    			<td>
-	    				<table class="table-responsive table-downloads">
-	    					<tr>
-				    			<td>La Convención Colectiva</td>
-				    			<td>
-				    				<a href="#" target="_blank" class="pdf-link-icon"></a>
-				    			</td>
-				    		</tr>
-	    				</table>
-	    			</td>
-	    		</tr>
-    		</tbody>
-        </table>
     </div>
 </div>
 
