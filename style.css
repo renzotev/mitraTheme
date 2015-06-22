@@ -9,11 +9,11 @@ Theme Name: Ministerio de trabajo
 .h6,
 h1,
 h2,
-h3, 
-h4, 
+h3,
+h4,
 h5,
 h6 {
-  font-weight: bold; 
+  font-weight: bold;
 }
 body {
   background: url("img/bg.png") repeat-x center top;
@@ -275,8 +275,8 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
 .breadcrumb-wrapper .breadcrumb li a:hover {
   background-color: #646464;
 }
-.breadcrumb-wrapper .breadcrumb li.active span,
-.breadcrumb-wrapper .breadcrumb li.current_item span {
+.breadcrumb-wrapper .breadcrumb li.active > span,
+.breadcrumb-wrapper .breadcrumb li.current_item > span {
   background-color: #f00;
   color: #fff;
   padding: 0 18px;
@@ -1503,6 +1503,14 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
     color: #fff;
   }
   header .navbar .navbar-collapse .navbar-nav li.active > a {
+    background-color: #e91b23;
+    color: #fff;
+  }
+  header .navbar .navbar-collapse .navbar-nav li.no-active > a {
+    background-color: #fff;
+    color: #4d4d4d;
+  }
+  header .navbar .navbar-collapse .navbar-nav li.no-active > a:hover {
     background-color: #e91b23;
     color: #fff;
   }

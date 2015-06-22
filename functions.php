@@ -28,12 +28,14 @@
 	function setup() {
 		add_theme_support( 'post-thumbnails', 
 			array( 
-				'notas-de-prensa' ) 
+				'notas-de-prensa',
+				'cartas-servicios' ) 
 		);
 
 	    add_image_size( 'notaPrensaPost', 1030 );
 		add_image_size( 'notaPrensaArchive', 251, 167, true );
 		add_image_size( 'notaPrensaBanner', 860, 400, true );
+		add_image_size( 'cartasServiciosArchive', 156 );
 	}
 
 

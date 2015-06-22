@@ -87,66 +87,10 @@ get_header();
 
         <div class="clearfix"></div>
 
-        <?php if( have_rows('servicios_virtuales') ):
-
-			$titulo_2 = get_field('titulo_2');
-	 	?>
-
-	        <table class="table-responsive table-downloads" id="servicios-virtuales">
-	        	<thead>
-	        		<tr>
-		        		<th colspan="2"><?php echo $titulo_2; ?></th>
-		        	</tr>
-	        	</thead>
-
-				<tbody>
-					<?php while( have_rows('servicios_virtuales') ): the_row(); ?>
-		            	<tr>
-		            		<td><?php the_sub_field( "texto" ); ?></td>
-			                <?php if( have_rows('archivo_o_enlace') ): ?>
-			                	<td>
-			                        <?php while( have_rows('archivo_o_enlace') ): the_row(); 
-
-			                        	$tipo = get_sub_field('tipo');
-			                        	$archivo = get_sub_field('archivo');
-			                        	$enlace = get_sub_field('enlace');
-			                        	$archivoClass = "explorer";
-			                        	$excelExts = array("xla","xlam","xls","xlsb","xlsm","xlsx","xlt","xltm","xltx","xlw","xml"); 
-
-			                        	if ($tipo == 'archivo') {
-			                        		$ext = pathinfo($archivo['url'], PATHINFO_EXTENSION);
-			                        		
-			                        		foreach ($excelExts as $val) {
-											    if ($val == $ext) {
-											    	$archivoClass = "excel";
-											    	break;
-												}
-											}
-
-											if ($archivoClass != "excel" && $ext == "pdf") {
-												$archivoClass = "pdf";
-											}
-			                        	} else {
-			                        		$archivoClass = "explorer";
-			                        	}
-			                        	
-			                        ?>
-										<a target="_blank" href="<?php echo $archivo['url']; ?>" class="<?php echo $archivoClass; ?>-link-icon"></a>
-			                        <?php endwhile; ?>
-			                    </td>
-			                <?php endif; ?>
-		            	</tr>
-		            <?php endwhile; ?>
-	            </tbody>
-	        </table>
-
-        <?php endif; ?>
-
-
 		<?php 
-			$dataContainer = array('servicios_virtuales', 'informacion');
-			$sectionTitle = array('titulo_2', 'titulo_3');
-			$tableType = array('tipo_de_tabla_2', 'tipo_de_tabla_3');
+			$dataContainer = array('servicios_virtuales', 'informacion', 'consultas_laborales');
+			$sectionTitle = array('titulo_2', 'titulo_3', 'titulo_4');
+			$tableType = array('tipo_de_tabla_2', 'tipo_de_tabla_3', 'tipo_de_tabla_4');
 		?>
 
 		<?php for ($i = 0; $i < count($dataContainer); $i++): ?>
