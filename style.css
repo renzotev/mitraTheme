@@ -276,7 +276,8 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   background-color: #646464;
 }
 .breadcrumb-wrapper .breadcrumb li.active > span,
-.breadcrumb-wrapper .breadcrumb li.current_item > span {
+.breadcrumb-wrapper .breadcrumb li.current_item > span,
+.breadcrumb-wrapper .breadcrumb li.youAreHere > span {
   background-color: #f00;
   color: #fff;
   padding: 0 18px;
@@ -288,6 +289,10 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.breadcrumb-wrapper .breadcrumb li.youAreHere > span {
+  background: none;
+  color: #4d4d4d;
 }
 .carousel-wrapper {
   padding: 30px 0;
@@ -457,6 +462,39 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   background-color: #f00;
   color: #fff;
 }
+.general-content .default-list-items {
+  margin-bottom: 40px;
+  list-style: none;
+}
+.general-content .default-list-items li p a {
+  color: #4d4d4d;
+}
+.general-content .revistasPublicaciones:hover a {
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+}
+.general-content .revistasPublicaciones a {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.general-content .revistasPublicaciones a .img-responsive {
+  display: inline-block;
+}
+.general-content .revistasPublicaciones a:hover {
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+}
 .general-content .table-multiCols-wrapper {
   overflow-x: scroll;
 }
@@ -481,24 +519,24 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   padding: 7px 14px;
   border: 1px solid #b3b3b3;
 }
-.general-content .list-buttons-1 {
+.general-content .list-buttons-1 ul {
   text-align: center;
   list-style: none;
   font-size: 0;
   margin: 0;
   padding: 0;
 }
-.general-content .list-buttons-1:after,
-.general-content .list-buttons-1:before {
+.general-content .list-buttons-1 ul:after,
+.general-content .list-buttons-1 ul:before {
   content: "";
   clear: both;
   display: block;
 }
-.general-content .list-buttons-1 li {
+.general-content .list-buttons-1 ul li {
   display: inline-block;
   margin: 20px 8px;
 }
-.general-content .list-buttons-1 li a {
+.general-content .list-buttons-1 ul li a {
   display: block;
   text-decoration: none;
   font-size: 14px;
@@ -907,6 +945,12 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   font-size: 14px;
   margin-top: 10px;
   margin-bottom: 20px;
+}
+.general-content .posts-list > li .content-post h2 a {
+  color: #4d4d4d;
+}
+.general-content .posts-list > li .content-post > span {
+  color: #555;
 }
 .general-content .excel-link-icon {
   background: url("img/ico-excel-table.png") no-repeat 0 0;

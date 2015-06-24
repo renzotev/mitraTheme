@@ -20,8 +20,8 @@
 							</a>
 
 							<div class="content-post">
-								<h2><a href="<?php the_permalink(); ?>" style="color:#333333"><?php the_title(); ?></a></h2>
-								<span style="color:#555555">Publicado el: <?php echo get_the_date( 'd/m/Y' ); ?></span>
+								<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+								<span>Publicado el: <?php echo get_the_date( 'd/m/Y' ); ?></span>
 								<p><?php echo wp_trim_excerpt(); ?></p>
 
 								<div class="share-icons pull-left">
