@@ -91,3 +91,63 @@
 		remove_meta_box( 'postbox-container-2','post','normal' ); // Author Metabox
 	}
 	add_action('admin_menu','remove_my_post_metaboxes');
+
+
+	/* CUSTOM LOGIN */
+
+	function mintra_login_logo() { ?>
+    <style type="text/css">
+        .login h1 a {
+            background-image: url(<?php echo get_template_directory_uri(); ?>/img/logo.png);
+          	width: 237px;
+			height: 80px;
+			background-size: 100%;
+        }
+    </style>
+	<?php }
+	add_action( 'login_enqueue_scripts', 'mintra_login_logo' );
+
+	function mintra_login_logo_url() {
+    return home_url();
+	}
+	add_filter( 'login_headerurl', 'mintra_login_logo_url' );
+
+	function mintra_login_logo_url_title() {
+	    return 'Ministerio de Trabajo y Promoción del Empleo';
+	}
+	add_filter( 'login_headertitle', 'mintra_login_logo_url_title' );
+
+
+
+	/* ALLL BUTTONS EDITOR WYSIWYG*/
+
+	function enable_more_buttons($buttons) {
+
+		$buttons[] = 'fontselect';
+		$buttons[] = 'fontsizeselect';
+		$buttons[] = 'styleselect';
+		$buttons[] = 'cut';
+		$buttons[] = 'copy';
+		$buttons[] = 'charmap';
+		$buttons[] = 'hr';
+		$buttons[] = 'visualaid';
+
+		return $buttons;
+	}
+	add_filter("mce_buttons_3", "enable_more_buttons");
+
+	add_filter( 'tiny_mce_before_init', 'customformatTinyMCE' );
+		function customformatTinyMCE( $in ) {
+
+		$in['wordpress_adv_hidden'] = FALSE;
+
+		return $in;
+	}
+
+
+	/* SHORTCODES */
+
+	function lista_botones( $atts, $content = null ) {
+		return '<div class="list-buttons-1">' . $content . '</div>';
+	}
+	add_shortcode( 'lista_botones', 'lista_botones' );
