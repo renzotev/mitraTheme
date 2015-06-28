@@ -469,6 +469,12 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
 .general-content .default-list-items li p a {
   color: #4d4d4d;
 }
+.general-content .revistasPublicaciones:after,
+.general-content .revistasPublicaciones:before {
+  content: "";
+  clear: both;
+  display: block;
+}
 .general-content .revistasPublicaciones:hover a {
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   filter: alpha(opacity=50);
@@ -494,6 +500,29 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   -moz-opacity: 1;
   -khtml-opacity: 1;
   opacity: 1;
+}
+.general-content .revistasPublicaciones.boletines a {
+  text-decoration: none;
+  margin-bottom: 50px;
+}
+.general-content .revistasPublicaciones.boletines a strong,
+.general-content .revistasPublicaciones.boletines a span {
+  font-size: 15px;
+  color: #4d4d4d;
+  display: block;
+}
+.general-content .revistasPublicaciones.boletines a span {
+  min-height: 45px;
+  margin-bottom: 5px;
+}
+.general-content .revistasPublicaciones.boletines a .image-background {
+  width: 70%;
+  margin: 0 15%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 100%;
+  padding-bottom: 80%;
+  border: 1px solid #808080;
 }
 .general-content .table-multiCols-wrapper {
   overflow-x: scroll;
@@ -1027,6 +1056,20 @@ header .navbar .navbar-collapse .navbar-nav li.active > a {
   font-weight: normal;
   background-color: #c9c9c9;
   border-bottom: 0 none;
+}
+.general-content .year {
+  background-color: #f00;
+  font-weight: bold;
+  color: #fff;
+  padding: 8px;
+  margin-bottom: 15px;
+  margin-top: 35px;
+  max-width: 250px;
+  margin-bottom: 20px;
+  clear: both;
+}
+.general-content .year:first-child {
+  margin-top: 0;
 }
 .icon-buttons .col-sm-4 {
   padding: 0 45px 0 65px;

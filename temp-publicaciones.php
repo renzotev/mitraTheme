@@ -73,7 +73,7 @@ get_header();
 
                     ?>
 
-                    <a class="<?php echo $offsetClass; ?>" href="<?php echo $archivo['url']; ?>">
+                    <a class="<?php echo $offsetClass; ?>" href="<?php echo $archivo['url']; ?>" target="_blank">
                         <img src="<?php echo $imagen['url']; ?>" title="<?php echo $imagen['title']; ?>" alt="<?php echo $imagen['alt']; ?>" class="img-responsive">
                     </a>
 
