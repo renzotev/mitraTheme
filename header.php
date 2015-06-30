@@ -136,6 +136,7 @@
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-header" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="see-menu">Ver Menú</span>
                         <button type="button" class="navbar-toggle collapsed">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -171,65 +172,3 @@
 
 		    $the_query = new WP_Query( $args );  
 		?>
-
-        <?php if ( $the_query->have_posts() && is_front_page() ) : ?>
-            <div class="slider hidden">
-                <div class="container">
-                    <div id="slides" class="slides-wrapper">
-    	                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-
-    		                <div class="slide">
-    	                        <div class="caption">
-    	                            <div class="content-caption">
-    	                                <a href="<?php the_permalink(); ?>" class="content-link">
-                                            <p><?php the_title(); ?></p>
-
-        	                                <p class="ref">
-        	                                	<?php if( get_field( 'subtitulo') ):
-
-        											$text = get_field('subtitulo');
-        									 	?>
-
-        											<em><?php echo $text; ?></em>
-        										<?php endif; ?>
-        	                                </p>
-                                        </a>
-    	                                <a href="<?php the_permalink(); ?>" class="see-more">Leer más</a>
-    	                            </div>
-    	                        </div>
-
-    	                        <?php
-    								if ( has_post_thumbnail() ) {
-    									$src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), "notaPrensaBanner");
-    								} 
-    							?>
-    							<div class="image-slider" style="background-image:url(<?php echo $src[0] ?>)"></div>
-    	                    </div>
-
-    	                <?php endwhile; ?>
-
-    			        <?php wp_reset_postdata(); ?>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="consult-phone hidden">
-                <div class="container">
-                    <figure>
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/phone-consult.png">
-                        <figcaption>
-                            <span class="text-top">Consultas Laborales</span>
-                            
-                            <?php if( get_field( "telefono_consultas_laborales", 'option') ):
-
-    							$text = get_field('telefono_consultas_laborales', 'option');
-    						 ?>
-
-    							<span class="number"><?php echo $text; ?></span>
-    						<?php endif; ?>
-                            <span class="text-bottom">Linea Gratuita</span>
-                        </figcaption>
-                    </figure>
-                </div>
-            </div>
-        <?php endif; ?>

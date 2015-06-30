@@ -3,6 +3,8 @@
 #wpadminbar .quicklinks .menupop ul #wp-admin-bar-new-post,
 #adminmenu li.menu-top#menu-comments,
 #adminmenu li.menu-top#menu-posts,
-#adminmenu li.menu-top#menu-tools {
+#adminmenu li.menu-top#menu-tools,
+#adminmenu li.menu-top#menu-posts-notas-de-prensa,
+#adminmenu li.menu-top#menu-posts-cartas-servicios {
 	display: none;
 }

@@ -8,6 +8,65 @@ get_header();
 
 ?>
 
+<?php if( have_rows('banner') ): ?>
+    <div class="slider hidden">
+        <div class="container">
+            <div id="slides" class="slides-wrapper">
+                <?php while( have_rows('banner') ): the_row(); 
+                    
+                    $titulo = get_sub_field('titulo');
+                    $texo = get_sub_field('texo');
+                    $imagen = get_sub_field('imagen');
+                    $enlace = get_sub_field('enlace');
+                    $src = wp_get_attachment_image_src($imagen, "notaPrensaBanner");
+
+                    ?>
+
+                    <div class="slide">
+                        <div class="caption">
+                            <div class="content-caption">
+                                <a href="<?php echo $enlace; ?>" class="content-link">
+                                    <p><?php echo $titulo; ?></p>
+
+                                    <p class="ref">
+                                        <em><?php echo $texo; ?></em>
+                                    </p>
+                                </a>
+                                <a href="<?php echo $enlace; ?>" class="see-more">Leer más</a>
+                            </div>
+                        </div>
+
+                        <div class="image-slider" style="background-image:url(<?php echo $src[0] ?>)"></div>
+                    </div>
+
+                <?php endwhile; ?>
+
+            </div>
+        </div>
+    </div>
+
+<?php endif; ?>
+
+<div class="consult-phone hidden">
+    <div class="container">
+        <figure>
+            <img src="<?php echo get_template_directory_uri(); ?>/img/phone-consult.png">
+            <figcaption>
+                <span class="text-top">Consultas Laborales</span>
+                
+                <?php if( get_field( "telefono_consultas_laborales", 'option') ):
+
+                    $text = get_field('telefono_consultas_laborales', 'option');
+                 ?>
+
+                    <span class="number"><?php echo $text; ?></span>
+                <?php endif; ?>
+                <span class="text-bottom">Linea Gratuita</span>
+            </figcaption>
+        </figure>
+    </div>
+</div>
+
 <?php if( have_rows('botones_con_icono') ): ?>
     <div class="triangle-buttons">
         <div class="container">
