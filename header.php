@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/owl.carousel.css">
         <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/admin.css">
 
         <script src="<?php echo get_template_directory_uri(); ?>/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
@@ -56,23 +57,28 @@
         <header>
             <div class="line-top">
                 <div class="container hidden">
-                    <ul class="items-top pull-right">
-                        <li class="icon-mapa">
-                            <a href="#">Mapa Web</a>
-                        </li>
+                    <?php if( have_rows('enlaces', 'option') ): ?>
+                        <ul class="items-top pull-right">
+                        <?php while( have_rows('enlaces', 'option') ): the_row(); 
+                            
+                            $texto = get_sub_field('texto');
+                            $enlace = get_sub_field('enlace');
+                            $tipo = get_sub_field('tipo');
+                            $abrir_en_una_nueva_pagina = get_sub_field('abrir_en_una_nueva_pagina');
+                            $targetIcon = ($abrir_en_una_nueva_pagina) ? 'target="_blank"' : '';
 
-                        <li class="icon-intranet">
-                            <a href="https://sites.google.com/a/trabajo.gob.pe/intranet/home" target="_blank">Intranet</a>
-                        </li>
+                            ?>
 
-                        <li class="icon-faq">
-                            <a href="http://blogs.up.edu.pe/mitra/servicios/preguntas-frecuentes-faq/">Preguntas Frecuentes - FAQ</a>
-                        </li>
+                            <li class="icon-<?php echo $tipo; ?>">
+                                <a href="<?php echo $enlace; ?>" <?php echo $targetIcon; ?>><?php echo $texto; ?></a>
+                            </li>
 
-                        <li class="icon-portal">
-                            <a href="http://www.peru.gob.pe/transparencia/pep_transparencia_lista_planes_frame.asp?id_entidad=141&id_tema=1" target="_blank">Portal de Transparencia</a>
-                        </li>
-                    </ul>
+                        <?php endwhile; ?>
+
+                        </ul>
+
+                    <?php endif; ?>
+
                 </div>
             </div>
 
@@ -129,8 +135,8 @@
 
             <nav class="navbar">
                 <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <div class="navbar-header" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <button type="button" class="navbar-toggle collapsed">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>

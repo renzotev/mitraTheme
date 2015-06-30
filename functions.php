@@ -209,3 +209,22 @@
 		return '<div class="list-buttons-1">' . $content . '</div>';
 	}
 	add_shortcode( 'lista_botones', 'lista_botones' );
+
+	function icon_func( $atts ) {
+	    $a = shortcode_atts( array(
+	        'tipo' => 'pdf',
+	        'ruta'	=> '#',
+	    ), $atts );
+
+	    return '<a href="'.$a['ruta'].'" target="_blank" class="'.$a['tipo'].'-link-icon"></a>';
+	}
+	add_shortcode( 'icon', 'icon_func' );
+
+
+	/* CUSTOM CSS ADMIN PAGE */
+
+	add_action('admin_head', 'custom_css');
+
+	function custom_css() { ?>
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/admin.css">
+	<?php }

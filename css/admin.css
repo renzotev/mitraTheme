@@ -1,0 +1,8 @@
+#wpadminbar ul#wp-admin-bar-root-default>#wp-admin-bar-comments,
+#wpadminbar ul#wp-admin-bar-root-default>#wp-admin-bar-updates,
+#wpadminbar .quicklinks .menupop ul #wp-admin-bar-new-post,
+#adminmenu li.menu-top#menu-comments,
+#adminmenu li.menu-top#menu-posts,
+#adminmenu li.menu-top#menu-tools {
+	display: none;
+}

@@ -23,13 +23,23 @@
             </div>
         </footer>
 
-        <div class="scrollToTop"><i class="glyphicon glyphicon-chevron-up"></i></div>
+        <div class="scrollToTop-wrapper">
+            <div class="scrollToTop"><i class="glyphicon glyphicon-chevron-up"></i></div>
+        </div>
         
         <script src="<?php echo get_template_directory_uri(); ?>/js/vendor/bootstrap.min.js"></script>
         <script src="<?php echo get_template_directory_uri(); ?>/js/vendor/jquery.slides.min.js"></script>
         <script src="<?php echo get_template_directory_uri(); ?>/js/vendor/owl.carousel.min.js"></script>
 
         <script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
+
+        <?php if( get_field( "google_analytics", 'option') ):
+
+            $google_analytics = get_field('google_analytics', 'option');
+         ?>
+
+            <?php echo $google_analytics; ?>
+        <?php endif; ?>
 
         <?php wp_footer(); ?>
     </body>

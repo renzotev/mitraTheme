@@ -6,6 +6,11 @@ gray_body = #4d4d4d
 
 /*
 Theme Name: Ministerio de trabajo
+Theme URI: http://www.mintra.gob.pe/
+Author: Ministerio de trabajo
+Author URI: http://www.mintra.gob.pe/
+Version: 1.0
+
 */
 
 .h1,
@@ -161,6 +166,7 @@ header
 		.nav .open>a:hover
 			background-color white
 			color rojo !important
+			border-bottom 2px solid rojo
 		
 		.navbar-header
 			.navbar-toggle
@@ -175,7 +181,11 @@ header
 			
 			.navbar-nav
 				background-color rojo
-				margin-top 3px	
+				margin-top 3px
+				
+				ul
+					border-bottom 1px solid white
+					padding-left 25px
 				
 				.marginBottom-0 
 					margin-bottom 0
@@ -185,7 +195,7 @@ header
 					
 					& > .dropdown-menu
 						top 0
-						left 100%
+						left 50%
 						margin-top -6px
 						margin-left -1px
 						border-radius 0
@@ -218,7 +228,7 @@ header
 							border-radius 6px 0 6px 6px
 				
 				li
-					text-align center
+					text-align left
 					
 					a
 						color white
@@ -233,6 +243,15 @@ header
 						& > a
 							background-color white
 							color rojo
+
+.acf-map 
+	width 100%
+	height 400px
+	border #ccc solid 1px
+	margin 20px 0
+	
+	img
+		max-width none !important
 
 .breadcrumb-wrapper
 	margin-top 30px
@@ -441,11 +460,20 @@ header
 	.alert-message
 		text-align center
 		
-		span
+		span,
+		a
 			display inline-block
 			background-color #FF0000
 			color white
 			padding 10px 20px
+		
+		&.button
+			a
+				transition all .5s
+				text-decoration none
+				
+				&:hover
+					opacity .8
 	
 	.alert-message-fullWidth
 		text-align center
@@ -462,8 +490,19 @@ header
 				a
 					color gray_body
 
-
+	.not-found
+		color rojo
+		font-size 120px
+	
+	.error-not-found
+		font-size 54px
+		line-height 10px
+		margin-left 8px
+		margin-bottom 60px
+		
 	.revistasPublicaciones
+		margin-top 30px
+		
 		&:after,
 		&:before
 			content ""
@@ -471,10 +510,11 @@ header
 			display block
 			
 		&:hover
-			a
+			& > a
 				opacity .5
-				
-		a
+		
+			
+		& > a
 			display block
 			text-align center
 			margin-bottom 20px
@@ -487,7 +527,7 @@ header
 				opacity 1
 		
 		&.boletines
-			a
+			& > a
 				text-decoration none
 				margin-bottom 50px
 				
@@ -509,6 +549,18 @@ header
 					background-size 100% 100%
 					padding-bottom 80%
 					border 1px solid #808080
+		
+		
+		&:hover
+			.item
+				opacity .5
+				
+		.item
+			transition all .5s
+			margin-bottom 30px
+			
+			&:hover
+				opacity 1
 		
 
 	.table-multiCols-wrapper
@@ -645,6 +697,10 @@ header
 			content ""
 			clear both
 			display block
+		
+		&:hover
+			.gBtn
+				opacity .5
 
 		.gBtn
 			text-decoration none
@@ -653,6 +709,10 @@ header
 			width 100%
 			height 43px
 			margin-bottom 20px
+			transition all .5s
+			
+			&:hover
+				opacity 1
 			
 			span
 				display table-cell
@@ -857,6 +917,13 @@ header
 		display inline-block
 		margin 0 3px
 	
+	.pdf-link-large
+		background url("img/icon-pdf-3.png") no-repeat 0 0
+		width 19px
+		height 18px
+		display inline-block
+		margin 0 3px
+	
 	.post-page
 		padding 0 30px
 		
@@ -979,6 +1046,13 @@ header
 		display inline-block
 		margin 0 3px
 	
+	.word-link-icon
+		background url("img/ico-word-table.png") no-repeat 0 0
+		width 15px
+		height 14px
+		display inline-block
+		margin 0 3px
+	
 
 	& > .container > .table-downloads
 		margin-top 50px
@@ -1063,6 +1137,10 @@ header
 			margin-top 0
 	
 .icon-buttons
+	&:hover
+		.btn-ico
+			opacity .5
+
 	.col-sm-4
 		padding 0 45px 0 65px
 
@@ -1076,9 +1154,12 @@ header
 		padding 14px 10px 14px 36px
 		margin-top 4px
 		margin-bottom 30px
+		transition all .5s
 		
-		&:after
-			content ""
+		&:hover
+			opacity 1
+		
+		.after
 			background-repeat no-repeat
 			background-position 50% 50%
 			width 56px
@@ -1089,33 +1170,6 @@ header
 			top -4px
 			left -20px
 		
-		&.btn-1
-			&:after
-				background-image url("img/ico3-1.png")
-		
-		&.btn-2
-			&:after
-				background-image url("img/ico3-2.png")
-				
-		&.btn-3
-			&:after
-				background-image url("img/ico3-3.png")
-				
-		&.btn-4
-			&:after
-				background-image url("img/ico3-4.png")
-				
-		&.btn-5
-			&:after
-				background-image url("img/ico3-5.png")
-				
-		&.btn-6
-			&:after
-				background-image url("img/ico3-6.png")
-		
-		&.btn-7
-			&:after
-				background-image url("img/ico3-7.png")
 
 .image-buttons
 	margin-bottom 30px
@@ -1164,9 +1218,10 @@ header
 			display inline-block
 			transition all .5s
 
-
-.scrollToTop
+.scrollToTop-wrapper
 	display none
+	
+.scrollToTop
 	height 40px
 	width 40px
 	position fixed
@@ -1175,7 +1230,7 @@ header
 	z-index 999
 	box-shadow 0 0 10px rgba(0, 0, 0, 0.05)
 	background rojo
-	opacity 0
+	opacity .5
 	color white
 	text-align center
 	transition all .5s
@@ -1309,8 +1364,9 @@ header
 
 	.nav-tabs
 		li
-			width 25%
+			width 100%
 			padding 0 2px
+			margin-bottom 1px
 			
 			a
 				background-color red
@@ -1318,7 +1374,7 @@ header
 				border 0 none
 				display table
 				width 100%
-				height 80px
+				height 40px
 				font-weight bold
 				
 				span
@@ -1340,6 +1396,9 @@ header
 		background-color #c2c4c6
 		background-gradient(#c2c4c6, #FFFFFF)
 		
+		a
+			color gray_body
+		
 		.button-icon-text
 			display block
 			background-color rojo
@@ -1348,47 +1407,19 @@ header
 			margin-top 15px
 			margin-bottom 15px
 			height 110px
-			padding 28px 30px 0 100px
+			padding 10px 30px 0 100px
 			position relative
 			
-			&:before
+			.before
 				position absolute
-				content ""
 				background-repeat no-repeat
 				background-position 0 0
+				width 68px
+				height 52px
+				top 35px
+				left 18px
 			
-			&.btn-1
-				&:before
-					background-image url("img/ico2-1.png")
-					width 54px
-					height 35px
-					top 40px
-					left 28px
-			
-			&.btn-2
-				&:before
-					background-image url("img/ico2-2.png")
-					width 49px
-					height 52px
-					top 31px
-					left 28px
-			
-			&.btn-3
-				&:before
-					background-image url("img/ico2-3.png")
-					width 67px
-					height 52px
-					top 30px
-					left 15px
-			
-			&.btn-4
-				&:before
-					background-image url("img/ico2-4.png")
-					width 68px
-					height 41px
-					top 34px
-					left 20px
-			
+
 			.title-btn
 				display block
 				font-weight bold
@@ -1428,6 +1459,7 @@ header
 		height 67px
 		position relative
 		color white
+		font-size 12px
 		
 		.after
 			position absolute

@@ -69,7 +69,7 @@ get_header();
                     
                     $imagen = get_sub_field('imagen');
                     $archivo = get_sub_field('archivo');
-                    $offsetClass = ($counter-1 % 5 == 0 || $counter == 1) ? "col-xs-4 col-sm-2 col-sm-offset-1" : "col-xs-4 col-sm-2";
+                    $offsetClass = (($counter-1) % 5 == 0 || $counter == 1) ? "col-xs-4 col-sm-2 col-sm-offset-1" : "col-xs-4 col-sm-2";
 
                     ?>
 

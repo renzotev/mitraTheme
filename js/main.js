@@ -56,26 +56,14 @@ jQuery(function(){
 	var flag = true;
 
 	jQuery(window).scroll(function(){
-		if (jQuery(this).scrollTop() > 500) {
-			//clearTimeout(scrollTimeOut);
-			jQuery('.scrollToTop').css({
-				'display' : 'block',
-				'opacity' : '.8'
-			});
+		if (jQuery(this).scrollTop() > jQuery( window ).height()/2) {
+			jQuery('.scrollToTop-wrapper').show(500);
 		} else {
-			if (flag) {
-				flag = false;
-				jQuery('.scrollToTop').css('opacity', '0');
-
-				scrollTimeOut = setTimeout(function() {
-					jQuery('.scrollToTop').hide();
-					flag = true;
-				}, 500);
-			}
+			jQuery('.scrollToTop-wrapper').hide(500);
 		}
 	});
 	
-	jQuery('.scrollToTop').click(function(){
+	jQuery('.scrollToTop-wrapper').click(function(){
 		jQuery('html, body').animate({scrollTop : 0},800);
 		return false;
 	});

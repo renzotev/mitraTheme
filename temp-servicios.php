@@ -156,7 +156,7 @@ get_header();
 						                        	$excelExts = array("xla","xlam","xls","xlsb","xlsm","xlsx","xlt","xltm","xltx","xlw","xml"); 
 
 						                        	if ($tipo == 'archivo') {
-						                        		$ext = pathinfo($archivo['url'], PATHINFO_EXTENSION);
+						                        		$ext = strtolower(pathinfo($archivo['url'], PATHINFO_EXTENSION));
 						                        		
 						                        		foreach ($excelExts as $val) {
 														    if ($val == $ext) {

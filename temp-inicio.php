@@ -63,190 +63,199 @@ get_header();
     <div class="container">
         <div role="tabpanel">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#tab-programas" aria-controls="tab-programas" role="tab" data-toggle="tab"><span>Programas</span></a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab-consejos" aria-controls="tab-consejos" role="tab" data-toggle="tab"><span>Consejos - Comités - Comisiones</span></a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab-consultas" aria-controls="tab-consultas" role="tab" data-toggle="tab"><span>Consultas Lab - Servicios</span></a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab-seguridad" aria-controls="tab-seguridad" role="tab" data-toggle="tab"><span>Seguridad y Salud en el Trabajo</span></a>
-                </li>
+                <?php if( have_rows('tab_1') ): ?>
+                    <li role="presentation" class="active">
+                        <?php while( have_rows('tab_1') ): the_row();
+                             
+                            $titulo_tab = get_sub_field('titulo_tab');
+                        ?>
+                            <a href="#tab-programas" aria-controls="tab-programas" role="tab" data-toggle="tab"><span><?php echo $titulo_tab; ?></span></a>
+                        <?php endwhile; ?>
+                    </li>
+                <?php endif; ?>
+
+                <?php if( have_rows('tab_2') ): ?>
+                    <li role="presentation">
+                        <?php while( have_rows('tab_2') ): the_row();
+                             
+                            $titulo_tab = get_sub_field('titulo_tab');
+                        ?>
+                            <a href="#tab-consejos" aria-controls="tab-consejos" role="tab" data-toggle="tab"><span><?php echo $titulo_tab; ?></span></a>
+                        <?php endwhile; ?>
+                    </li>
+                <?php endif; ?>
+
+                <?php if( have_rows('tab_3') ): ?>
+                    <li role="presentation">
+                        <?php while( have_rows('tab_3') ): the_row();
+                             
+                            $titulo_tab = get_sub_field('titulo_tab');
+                        ?>
+                            <a href="#tab-consultas" aria-controls="tab-consultas" role="tab" data-toggle="tab"><span><?php echo $titulo_tab; ?></span></a>
+                        <?php endwhile; ?>
+                    </li>
+                <?php endif; ?>
+
+                <?php if( have_rows('tab_4') ): ?>
+                    <li role="presentation">
+                        <?php while( have_rows('tab_4') ): the_row();
+                             
+                            $titulo_tab = get_sub_field('titulo_tab');
+                        ?>
+                            <a href="#tab-seguridad" aria-controls="tab-seguridad" role="tab" data-toggle="tab"><span><?php echo $titulo_tab; ?></span></a>
+                        <?php endwhile; ?>
+                    </li>
+                <?php endif; ?>
             </ul>
 
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="tab-programas">
-                    <div class="col-sm-6">
-                        <a href="#" class="button-icon-text btn-1">
-                            <div class="before"></div>
-                            <span class="title-btn">Perú Responsable</span>
-                            <span class="text-btn">Programa Nacional de Promoción de la Responsabilidad Social Empresarial</span>
-                        </a>
-                    </div>
-                    <div class="col-sm-6">
-                        <a href="#" class="button-icon-text btn-2">
-                            <div class="before"></div>
-                            <span class="title-btn">Trabaja Perú</span>
-                            <span class="text-btn">Programa para la Generación de Empleo Social Inclusivo</span>
-                        </a>
-                    </div>
 
-                    <div class="clearfix"></div>
-
-                    <div class="col-sm-6">
-                        <a href="#" class="button-icon-text btn-3">
-                            <div class="before"></div>
-                            <span class="title-btn">Impulsa Perú</span>
-                            <span class="text-btn">Programa Nacional para la Promoción de Oportunidades Laborales</span>
-                        </a>
-                    </div>
-                    <div class="col-sm-6">
-                        <a href="#" class="button-icon-text btn-4">
-                            <div class="before"></div>
-                            <span class="title-btn">Jóvenes Productivos</span>
-                            <span class="text-btn">Programa Nacional de Empleo Juvenil</span>
-                        </a>
-                    </div>
-
-                    <div class="clearfix"></div>
-                </div>
-
-                <!--<?php if( have_rows('tab_1') ): ?>
+                <?php if( have_rows('tab_1') ): ?>
                     <div role="tabpanel" class="tab-pane active" id="tab-programas">
                         <?php while( have_rows('tab_1') ): the_row(); 
-                            
-                            $titulo_boton = get_sub_field('titulo_boton');
-                            $descripcion = get_sub_field('descripcion');
-                            $icono = get_sub_field('icono');
-                            $url = get_sub_field('url');
-
+                            $counter_tab1 = 1;
                         ?>
                              <?php if( have_rows('contenido') ): ?>
                                 <?php while( have_rows('contenido') ): the_row(); 
 
+                                    $titulo_boton = get_sub_field('titulo_boton');
+                                    $descripcion = get_sub_field('descripcion');
+                                    $icono = get_sub_field('icono');
+                                    $url = get_sub_field('url');
                                 ?>
                                     <div class="col-sm-6">
                                         <a href="<?php echo $url; ?>" class="button-icon-text btn-4">
+                                            <div class="before" style="background-image: url(<?php echo $icono['url']; ?>)"></div>
                                             <span class="title-btn"><?php echo $titulo_boton; ?></span>
                                             <span class="text-btn"><?php echo $descripcion; ?></span>
                                         </a>
                                     </div>
+
+                                    <?php
+                                        if ($counter_tab1 % 2 == 0) {
+                                            echo '<div class="clearfix"></div>';
+                                        }
+                                        $counter_tab1++;
+                                    ?>
                                 <?php endwhile; ?>
                             <?php endif; ?>
 
                         <?php endwhile; ?>
                     </div>
                 <?php endif; ?>
-                -->
 
-                <div role="tabpanel" class="tab-pane" id="tab-consejos">
-                    <div class="col-sm-3 img-consejo">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/consejo-1.jpg" class="img-responsive">
-                    </div>
-                    <div class="col-sm-3 img-consejo">
-                       <img src="<?php echo get_template_directory_uri(); ?>/img/consejo-2.jpg" class="img-responsive">
-                    </div>
+                <?php if( have_rows('tab_2') ): ?>
+                    <div role="tabpanel" class="tab-pane" id="tab-consejos">
+                        <?php while( have_rows('tab_2') ): the_row(); 
+                            $counter_tab2 = 1;
+                        ?>
+                             <?php if( have_rows('contenido') ): ?>
+                                <?php while( have_rows('contenido') ): the_row(); 
 
-                    <div class="col-sm-3 img-consejo">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/consejo-3.jpg" class="img-responsive">
-                    </div>
-                    <div class="col-sm-3 img-consejo">
-                      <img src="<?php echo get_template_directory_uri(); ?>/img/consejo-4.jpg" class="img-responsive">
-                    </div>
+                                    $imagen = get_sub_field('imagen');
+                                    $url = get_sub_field('url');
+                                ?>
+                                    <a class="col-sm-3 img-consejo" style="display:block" href="<?php echo $url; ?>" target="_blank">
+                                        <img src="<?php echo $imagen['url']; ?>" class="img-responsive">
+                                    </a>
 
-                    <div class="clearfix"></div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab-consultas">
-                    <div class="col-sm-6">
-                        <ul>
-                            <li>Solicitud de Orientación vía web (Consultas Laborales)</li>
-                            <li>Solicitud de Orientación vía telefónica</li>
-                            <li>Solicitud escrita de opinión técnica</li>
-                            <li>Consultas Presenciales</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6">
-                        <ul>
-                            <li>Servicios Presenciales</li>
-                            <li>Servicios Virtuales</li>
-                            <li>Información sobre Trabajadores - Empresas - Sindicatos</li>
-                            <li>Otros</li>
-                        </ul>   
-                    </div>
+                                    <?php
+                                        if ($counter_tab2 % 4 == 0) {
+                                            echo '<div class="clearfix"></div>';
+                                        }
+                                        $counter_tab2++;
+                                    ?>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
 
-                    <div class="clearfix"></div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab-seguridad">
-                    <div class="col-sm-6">
-                        <ul>
-                            <li>Estadísticas de Accidentes de Trabajo</li>
-                            <li>Modelos Referenciales Comité SST (Privado)</li>
-                            <li>Resoluciones Directoriales</li>
-                        </ul>
+                        <?php endwhile; ?>
                     </div>
-                    <div class="col-sm-6">
-                        <ul>
-                            <li>Normas Legales</li>
-                            <li>Documentos de Interés</li>
-                            <li>Módulo de Difusión</li>
-                        </ul>
-                    </div>
+                <?php endif; ?>
 
-                    <div class="clearfix"></div>
-                </div>
+                <?php if( have_rows('tab_3') ): ?>
+                    <div role="tabpanel" class="tab-pane" id="tab-consultas">
+                        <?php while( have_rows('tab_3') ): the_row(); 
+                            $contenido_derecha = get_sub_field('contenido_derecha');
+                            $contenido_izquierda = get_sub_field('contenido_izquierda');
+                        ?>
+
+                            <div class="col-sm-6">
+                                <?php echo $contenido_derecha; ?>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <?php echo $contenido_izquierda; ?>
+                            </div>
+                             
+
+                        <?php endwhile; ?>
+
+                        <div class="clearfix"></div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if( have_rows('tab_4') ): ?>
+                    <div role="tabpanel" class="tab-pane" id="tab-seguridad">
+                        <?php while( have_rows('tab_4') ): the_row(); 
+                            $contenido_derecha = get_sub_field('contenido_derecha');
+                            $contenido_izquierda = get_sub_field('contenido_izquierda');
+                        ?>
+
+                            <div class="col-sm-6">
+                                <?php echo $contenido_derecha; ?>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <?php echo $contenido_izquierda; ?>
+                            </div>
+                             
+
+                        <?php endwhile; ?>
+
+                        <div class="clearfix"></div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </div>
 
-<div class="icon-buttons">
+<?php if( have_rows('botones_varios') ): 
+    $botones_varios = count(get_field('botones_varios'));
+    $botones_varios_counter = 1;
+?>
+    <div class="icon-buttons">
     <div class="container">
-        <div class="col-sm-4">
-            <a href="#" class="btn-ico btn-1">
-                Acceso a la Información Pública
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a href="#" class="btn-ico btn-2">
-                Agenda Ministerial
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a href="#" class="btn-ico btn-3">
-                Convocatoria CAS
+    <?php while( have_rows('botones_varios') ): the_row(); 
+        
+        $texto = get_sub_field('texto');
+        $icono = get_sub_field('icono');
+        $enlace = get_sub_field('enlace');
+        $offsetClass_botonesVarios = (($botones_varios-1) % 3 == 0 && $botones_varios_counter == $botones_varios) ? "col-sm-offset-4" : '';
+        ?>
+
+        <div class="col-sm-4 <?php echo $offsetClass_botonesVarios; ?>">
+            <a href="<?php echo $enlace; ?>" class="btn-ico">
+               <?php echo $texto; ?>
+
+                <div class="after" style="background-image: url(<?php echo $icono['url']; ?>)"></div>
             </a>
         </div>
 
-        <div class="clearfix"></div>
+        <?php
+            if ($botones_varios_counter % 3 == 0) {
+                echo '<div class="clearfix"></div>';
+            }
+            $botones_varios_counter++;
+        ?>
 
-        <div class="col-sm-4">
-            <a href="#" class="btn-ico btn-4">
-                Estado de su Trámite
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a href="#" class="btn-ico btn-5">
-                Charlas y Eventos
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a href="#" class="btn-ico btn-6">
-                Normas Legales - SNIL
-            </a>
-        </div>
+    <?php endwhile; ?>
 
-        <div class="clearfix"></div>
-
-        <div class="col-sm-4 col-sm-offset-4">
-            <a href="#" class="btn-ico btn-7">
-                Plan Anticorrupción
-            </a>
-        </div>
     </div>
-</div>
+    </div>
+
+<?php endif; ?>
+
 
 
 <?php if( have_rows('eventos') ): ?>
